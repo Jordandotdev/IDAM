@@ -1,7 +1,7 @@
 <x-app-layout>
 
-    <div class="container mx-auto mt-1">
-        <div class="px-4 sm:px-6 lg:px-8 bg-white pt-4">
+    <div class="container mx-auto mt-1 pt-4">
+        <div class="px-4 sm:px-6 lg:px-8 bg-white pt-4 shadow-xl sm:rounded-lg">
 
             @if (session('success'))
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4 mb-5"
