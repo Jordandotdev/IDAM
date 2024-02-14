@@ -57,17 +57,31 @@ class ListingsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Listing $listing)
     {
-        //
+        return view('admin.listings.form', [
+            'listing' => $listing,
+            'LocationType' => LocationType::cases(),
+            'location_type' => 'location_type',
+            'mode' => 'update',
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Listing $listing)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'location_type' => 'required',
+        ]);
+
+        $listing->update($validated);
+
+        return redirect()->route('listings.index')->with('success', 'Listing successfully updated!');
     }
 
     /**
