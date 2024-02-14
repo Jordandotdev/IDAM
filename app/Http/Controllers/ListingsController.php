@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Listings;
-use App\Http\Requests\StoreListingsRequest;
-use App\Http\Requests\UpdateListingsRequest;
+use Illuminate\Http\Request;
+use App\Models\Listing;
+use App\Enums\LocationType;
 
 class ListingsController extends Controller
 {
@@ -13,7 +13,9 @@ class ListingsController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.Listings.index', [
+            'listings' => Listing::paginate(10),
+        ]);
     }
 
     /**
@@ -21,21 +23,33 @@ class ListingsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.Listings.form', [
+            'listing' => (new Listing()),
+            'LocationType' => LocationType::cases(),
+            'mode' => 'create',
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreListingsRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+        ]);
+
+        Listing::create($validated);
+
+        return redirect()->route('listings.index')->with('success', 'Listing successfully created!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Listings $listings)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +57,7 @@ class ListingsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Listings $listings)
+    public function edit(string $id)
     {
         //
     }
@@ -51,7 +65,7 @@ class ListingsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateListingsRequest $request, Listings $listings)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -59,8 +73,9 @@ class ListingsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Listings $listings)
+    public function destroy(Listing $listing)
     {
-        //
+        $listing->delete();
+        return redirect()->route('listings.index')->with('success', 'Listing successfully deleted!');
     }
 }

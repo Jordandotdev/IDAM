@@ -23,6 +23,9 @@
                     <x-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index')">
                         {{ __('Users') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('listings.index') }}" :active="request()->routeIs('listings.index')">
+                        {{ __('Listings') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -56,7 +59,7 @@
                                         {{ __('Team Settings') }}
                                     </x-dropdown-link>
 
-                                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
+                                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel)
                                         <x-dropdown-link href="{{ route('teams.create') }}">
                                             {{ __('Create New Team') }}
                                         </x-dropdown-link>

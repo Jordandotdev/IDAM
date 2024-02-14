@@ -31,4 +31,9 @@ Route::middleware([
         'user',
         App\Http\Controllers\UserController ::class
     );
+
+    Route :: resource (
+        'listings',
+        App\Http\Controllers\ListingsController ::class
+    );
 });
