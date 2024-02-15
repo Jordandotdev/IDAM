@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="container mx-auto mt-1 pt-4">
+    <div class="container mx-auto px-4 mt-1 pt-4">
         <div class="px-4 sm:px-6 lg:px-8 bg-white pt-4 shadow-xl sm:rounded-lg">
 
             @if (session('success'))
@@ -102,7 +102,7 @@
             </div>
         </div> 
         
-        <div class="pt-4">
+        <div class="py-4">
             {{ $users->links() }}
         </div>
         
