@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container mx-auto mt-1 ">
+    <div class="container mx-auto mt-1 p-4">
         <div class="space-y-10 divide-y divide-gray-900/10">
 
             <div class="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
