@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//general routes
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -24,29 +25,23 @@ Route::middleware([
     'verified', 
 ])->group(function () {
 
+    //Adminsitrator routes
     Route::group(['middleware'=> SuperAdminMiddleware::class], function(){
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
+
+        Route :: resource (
+            'user',
+            App\Http\Controllers\UserController ::class
+        );
+    
+        Route :: resource (
+            'listings',
+            App\Http\Controllers\ListingsController ::class
+        );
     });
     
-
-    Route :: resource (
-        'user',
-        App\Http\Controllers\UserController ::class
-    );
-
-    Route :: resource (
-        'listings',
-        App\Http\Controllers\ListingsController ::class
-    );
-
-    //need to implement gates and middleware for the following routes
-
-    //Adminsitrator routes
-
-
-    //general routes
 
 
     //logged user routes
