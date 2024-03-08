@@ -21,7 +21,7 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-
+    'SuperAdmin', 
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -36,4 +36,19 @@ Route::middleware([
         'listings',
         App\Http\Controllers\ListingsController ::class
     );
+
+    //need to implement gates and middleware for the following routes
+
+    //Adminsitrator routes
+
+
+    //general routes
+
+
+    //logged user routes
+
+
+    //property owner routes
+
+
 });
