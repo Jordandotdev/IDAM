@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\SuperAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,12 +21,15 @@ Route::get('/', function () {
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified',
-    'SuperAdmin', 
+    'verified', 
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+
+    Route::group(['middleware'=> SuperAdminMiddleware::class], function(){
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('dashboard');
+    });
+    
 
     Route :: resource (
         'user',
