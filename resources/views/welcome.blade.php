@@ -21,10 +21,9 @@
                     @auth
                         <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
+                            @csrf 
                         </form>
-                        
-                        <a href="#" onclick="document.getElementById('logout-form').submit();">
+                        <a href="#" onclick="document.getElementById('logout-form').submit();" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                             {{ __('Log Out') }}
                         </a>
                     @else
