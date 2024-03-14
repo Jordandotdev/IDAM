@@ -170,11 +170,14 @@
                                 {{ __('Profile') }}
                             </x-dropdown-link>
 
+                            @can('HighAuth_Gate')
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                <x-dropdown-link href="{{ route('api-tokens.index') }}">
-                                    {{ __('API Tokens') }}
-                                </x-dropdown-link>
-                            @endif
+                            <x-dropdown-link href="{{ route('api-tokens.index') }}">
+                                {{ __('API Tokens') }}
+                            </x-dropdown-link>
+                        @endif
+                            @endcan
+                           
 
                             <div class="border-t border-gray-200"></div>
 

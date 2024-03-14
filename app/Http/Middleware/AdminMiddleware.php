@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
 use App\Enums\Role;
+use Symfony\Component\Mime\Exception\AddressEncoderException;
 
 class AdminMiddleware
 {
@@ -20,8 +21,11 @@ class AdminMiddleware
         $user = $request->user();
 
         if ($user && $user->role != Role::Admin) {
-             abort(403, "You don't have admin access.");
+            return redirect('/')->with('error', "You don't have Admin access.");
         }
+        // Error to be addressed that the page should
+        // have a abort(403, "You don't have Superadmin access.");
+        //temporarily added the route
 
         return $next($request);
     }

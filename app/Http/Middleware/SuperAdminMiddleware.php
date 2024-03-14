@@ -20,8 +20,12 @@ class SuperAdminMiddleware
         $user = $request->user();
 
         if ($user && $user->role !== Role::SuperAdmin) {
-            abort(403, "You don't have Superadmin access.");
+            return redirect('/')->with('error', "You don't have Superadmin access.");
         }
+
+        // Error to be addressed that the page should
+        // have a abort(403, "You don't have Superadmin access.");
+        //temporarily added the route
 
         return $next($request);
     }
