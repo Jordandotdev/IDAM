@@ -20,40 +20,37 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified', 
 ])->group(function () {
 
-    //Adminsitrator routes
-    Route::group(['middleware'=> SuperAdminMiddleware::class], function(){
+   
+    //SuperAdmin & Admin routes
+    Route::group([
+        'middleware'=> [
+        'HighAuth',
+    ]], function(){
+       
+
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
 
-        Route :: resource (
+        Route::middleware('SuperAdmin')->resource(
             'user',
-            App\Http\Controllers\UserController ::class
+            App\Http\Controllers\UserController::class
         );
-    
-        Route :: resource (
+
+        Route::resource(
             'listings',
-            App\Http\Controllers\ListingsController ::class
+            App\Http\Controllers\ListingsController::class
         );
     });
     
-    //Admin routes
-    Route::group(['middleware'=> AdminMiddleware::class], function(){
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
     
-        Route :: resource (
-            'listings',
-            App\Http\Controllers\ListingsController ::class
-        );
-    });
 
     //logged user routes
 

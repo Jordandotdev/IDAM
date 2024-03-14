@@ -20,8 +20,8 @@
                 <div class=" sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                     <div class="p-4 bg-gray-400 flex gap-4 items-center rounded-md">
                     @auth
-                        @can('Admin_Gate')
-                        <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                        @can('HighAuth_Gate')
+                        <a href="{{ url('dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                         @endcan
                         
                         <x-dropdown align="right" width="48">

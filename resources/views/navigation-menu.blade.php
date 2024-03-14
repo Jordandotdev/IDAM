@@ -21,9 +21,13 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    @can('SuperAdmin_Gate')
                     <x-nav-link href="{{ route('user.index') }}" :active="request()->routeIs('user.index')">
                         {{ __('Users') }}
                     </x-nav-link>
+                    @endcan
+                    
                     <x-nav-link href="{{ route('listings.index') }}" :active="request()->routeIs('listings.index')">
                         {{ __('Listings') }}
                     </x-nav-link>

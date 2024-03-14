@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
 use App\Enums\Role;
 
-class AdminMiddleware
+class HighLevelMiddleware
 {
     /**
      * Handle an incoming request.
@@ -19,8 +19,8 @@ class AdminMiddleware
     {
         $user = $request->user();
 
-        if ($user && $user->role != Role::Admin) {
-             abort(403, "You don't have admin access.");
+        if ($user && $user->role !== Role::SuperAdmin && $user->role !== Role::Admin) {
+            abort(403, "You don't have Superadmin access.");
         }
 
         return $next($request);
