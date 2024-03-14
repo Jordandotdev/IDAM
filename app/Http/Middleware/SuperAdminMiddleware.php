@@ -19,10 +19,10 @@ class SuperAdminMiddleware
     {
         $user = $request->user();
 
-        if ($user && $user->role == Role::SuperAdmin) {
-            return $next($request);
+        if ($user && $user->role !== Role::SuperAdmin) {
+            return redirect('/')->with('error', "You don't have superadmin access.");
         }
 
-        return redirect('/')->with('error', "You don't have superadmin access.");
+        return $next($request);
     }
 }
