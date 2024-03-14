@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\SuperAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -42,7 +43,17 @@ Route::middleware([
         );
     });
     
-
+    //Admin routes
+    Route::group(['middleware'=> AdminMiddleware::class], function(){
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('dashboard');
+    
+        Route :: resource (
+            'listings',
+            App\Http\Controllers\ListingsController ::class
+        );
+    });
 
     //logged user routes
 
