@@ -20,6 +20,8 @@ class AdminMiddleware
     {
         $user = $request->user();
 
+      
+
         if ($user && $user->role != Role::Admin) {
             return redirect('/')->with('error', "You don't have Admin access.");
         }
