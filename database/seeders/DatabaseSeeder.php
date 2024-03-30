@@ -28,21 +28,22 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-       $admin =  \App\Models\User::factory()->create([
+       $SuperAdmin =  \App\Models\User::factory()->create([
             'name' => 'SuperAdmin',
             'email' => 'superadmin@idam.com',
             'password' => bcrypt('SuperAdmin'),
             'role' => '0',
         ],);
 
-        $admin->roles()->attach(1);
-
-        \App\Models\User::factory()->create([
+        $Admin = \App\Models\User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@idam.com',
             'password' => bcrypt('Admin'),
             'role' => '1',
         ]);
+
+        $SuperAdmin->roles()->attach(0);
+        $Admin->roles()->attach(1);
         
     }
 }

@@ -134,7 +134,7 @@
                     <!-- User Title -->
                     <div class="ms-3 relative">
                         <div class="font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
-                            {{ str_replace('_', ' ', Str::title(Str::snake(Auth::user()->role->name))) }}
+
                         </div>
                     </div>
                 @endauth
