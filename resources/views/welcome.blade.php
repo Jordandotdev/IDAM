@@ -77,7 +77,7 @@
                 </div>
             @endif
 
-            @livewire('home-page-general')
+            @livewire('main-home-page')
            
         </div>
     </body>
