@@ -15,5 +15,7 @@
         <div  class="relative top-16">
             @livewire('property-search-bar')
         </dvi>
+
+        
     </section>
 </div>

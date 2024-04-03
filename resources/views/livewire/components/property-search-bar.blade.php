@@ -8,31 +8,43 @@
         </svg>
     </div>
 
-    <section class="p-8 bg-gray-800 grid grid-cols-4 gap-6 lg:gap-8 rounded-lg">        
+    <section class=" p-8 bg-gray-800 grid grid-cols-4 gap-6 lg:gap-8 rounded-lg shadow-2xl shadow-gray-900">        
 
         <form class="max-w-sm mx-auto">
             <label for="countries" class="block mb-2 text-sm font-medium text-white dark:text-white">Looking For</label>
-            
+            <select id="countries" class="mr-8 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="" selected>Select Country</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
+            </select>
         </form>
-
+        
         <form class="max-w-sm mx-auto">
-            <label for="countries" class="block mb-2 text-sm font-medium text-white dark:text-white">Select an option</label>
-           
+            <label for="cities" class="block mb-2 text-sm font-medium text-white dark:text-white">City</label>
+            <select id="cities" class="mr-8 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="" selected>Select City</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
+            </select>
         </form>
-
+        
         <form class="max-w-sm mx-auto">
-            <label for="countries" class="block mb-2 text-sm font-medium text-white dark:text-white">Select an option</label>
-            <select id="countries" class="border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option selected>Choose a country</option>
-            <option value="US">United States</option>
-            <option value="CA">Canada</option>
-            <option value="FR">France</option>
-            <option value="DE">Germany</option>
+            <label for="priceLimit" class="block mb-2 text-sm font-medium text-white dark:text-white">Price Limit</label>
+            <select id="priceLimit" class="mr-8 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="" selected>Select Price Limit</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
             </select>
         </form>
 
-        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-bold text-center text-black bg-orange-100 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Read more
+        <a href="#" class="inline-flex justify-center items-center px-3 py-2 text-2xl font-bold text-center text-black bg-orange-100 rounded-lg hover:bg-gray-900 hover:text-orange-100 focus:ring-4  focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Search
             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
             </svg>
