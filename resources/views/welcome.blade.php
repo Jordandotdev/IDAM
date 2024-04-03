@@ -76,9 +76,9 @@
                 </div>
                 </div>
             @endif
+        </div>
 
             @livewire('main-home-page')
-           
-        </div>
+    
     </body>
 </html>
