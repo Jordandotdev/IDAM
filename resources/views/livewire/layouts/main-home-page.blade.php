@@ -16,6 +16,9 @@
             @livewire('property-search-bar')
         </dvi>
 
+        <div>
+            
+        </div>
         
     </section>
 </div>
