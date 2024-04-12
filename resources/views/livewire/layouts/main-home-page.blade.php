@@ -18,10 +18,17 @@
     </section>
 
     <section class="px-6 mt-24 ">
+
         <div class="flex flex-row gap-4 justify-left">
+            
             @livewire('thumbnail-property-card')
             @livewire('thumbnail-property-card')
+            @livewire('thumbnail-property-card')
+            @livewire('thumbnail-property-card')
+            @livewire('thumbnail-property-card')
+            
         </div>
+
     </section>
     
 </div>
