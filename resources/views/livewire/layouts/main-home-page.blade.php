@@ -17,16 +17,36 @@
         </dvi>
     </section>
 
+    {{-- Featured Porperties section --}}
     <section class="px-6 mt-24 ">
 
-        <div class="flex flex-row gap-4 justify-left">
-            
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800">Featured Properties</h2>
+        </div>
+
+        <div class="flex flex-row mt-4 gap-4 justify-left">      
             @livewire('thumbnail-property-card')
             @livewire('thumbnail-property-card')
             @livewire('thumbnail-property-card')
             @livewire('thumbnail-property-card')
+            @livewire('thumbnail-property-card')  
+        </div>
+
+    </section>
+
+    {{-- section --}}
+    <section class="px-6 mt-14">
+
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800">Featured Properties</h2>
+        </div>
+
+        <div class="flex flex-row mt-4 gap-4 justify-left">      
             @livewire('thumbnail-property-card')
-            
+            @livewire('thumbnail-property-card')
+            @livewire('thumbnail-property-card')
+            @livewire('thumbnail-property-card')
+            @livewire('thumbnail-property-card')  
         </div>
 
     </section>

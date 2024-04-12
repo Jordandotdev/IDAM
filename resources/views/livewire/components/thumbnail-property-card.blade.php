@@ -1,3 +1,6 @@
+{{-- Need to route the table data to the card 
+to be used as a template --}}
+
 <div class="relative group duration-500 cursor-pointer group overflow-hidden relative text-gray-50 h-72 w-56  rounded-2xl hover:duration-700 duration-700">
     <div class="w-56 h-72 bg-lime-400 text-gray-800">
       <div class="flex flex-row justify-between">
