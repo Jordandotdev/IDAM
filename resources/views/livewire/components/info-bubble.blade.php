@@ -14,9 +14,8 @@
   </svg>
 
   <div class="z-20 flex flex-col justify-center items-center">
-    <span class="font-bold text-6xl ml-2">34+</span>
-    <p class="font-bold">Projects</p>
+    <span class="font-bold text-6xl ml-2">{{ $number }}</span>
+    <p class="font-bold">{{ $text }}</p>
   </div>
 </div>
-
 </div>

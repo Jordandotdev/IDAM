@@ -1,5 +1,5 @@
 <div class="p-8">
-    <section class=" bg-center bg-no-repeat bg-cover bg-[url('https://i.pinimg.com/564x/13/64/b3/1364b3cf51eb82e47f03e00a0e72450c.jpg')] bg-gray-600 bg-blend-multiply">
+    <section class="rounded-lg bg-center bg-no-repeat bg-cover bg-[url('https://i.pinimg.com/564x/13/64/b3/1364b3cf51eb82e47f03e00a0e72450c.jpg')] bg-gray-600 bg-blend-multiply">
         <div class=" grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">  
          
             <div class="px-4 mx-auto max-w-screen-xl text-left lg:py-16">
@@ -42,7 +42,9 @@
         </div>
 
         <div class="flex flex-row mt-4 gap-4 justify-center">      
-           @livewire('info-bubble') 
+            @livewire('info-bubble', ['number' => 34, 'text' => 'Projects'])
+            @livewire('info-bubble', ['number' => 300, 'text' => 'Properties'])
+            @livewire('info-bubble', ['number' => 34, 'text' => 'Projects'])
         </div>
 
     </section>
