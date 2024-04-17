@@ -35,17 +35,25 @@
     </section>
 
     {{-- section --}}
-    <section class="px-6 mt-14">
+    <section class="p-6 mt-14 rounded-lg bg-pink-100">
 
         <div>
-            <h2 class="text-3xl font-bold text-gray-800">About Us</h2>
+            <h2 class=" text-3xl font-bold text-gray-800">About Us</h2>
         </div>
 
-        <div class="flex flex-row mt-4 gap-4 justify-center">      
-            @livewire('info-bubble', ['number' => 34, 'text' => 'Projects'])
-            @livewire('info-bubble', ['number' => 300, 'text' => 'Properties'])
-            @livewire('info-bubble', ['number' => 34, 'text' => 'Projects'])
+        <div class="flex flex-row gap-16">
+            <p class="mt-4 w-1/2 text-lg font-normal text-gray-600 tracking-tight">
+                Idam is a dynamic real estate enterprise revolutionizing the property market landscape, offering an all-encompassing platform facilitating seamless transactions for buying, selling, and renting properties. Our cutting-edge approach integrates innovative technology, strategic market insights, and robust capital resources to unlock enduring value and catalyze economic prosperity. With Idam, users not only engage in traditional property transactions but also harness the power to bid for rental agreements and dynamically negotiate house prices, empowering individuals and businesses alike to navigate the real estate realm with unparalleled flexibility and efficiency
+             </p>
+
+            <div class="flex flex-wrap mt-4 pb-4 gap-4 justify-left">      
+                @livewire('info-bubble', ['text1' => '+20k', 'text2' => 'Customers','color' => 'fill-red-300'])
+                @livewire('info-bubble', ['text1' => '+300', 'text2' => 'Properties','color' => 'fill-pink-300'])
+                @livewire('info-bubble', ['text1' => '+200', 'text2' => 'Million Revenue','color' => 'fill-blue-300'])
+            </div>
         </div>
+
+        
 
     </section>
     

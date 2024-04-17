@@ -5,7 +5,7 @@
   <svg
     viewBox="0 0 200 200"
     xmlns="http://www.w3.org/2000/svg"
-    class="absolute blur z-10 fill-red-300 duration-500 group-hover:blur-none group-hover:scale-105"
+    class="absolute blur z-10 {{$color}} duration-500 group-hover:blur-none group-hover:scale-105"
   >
     <path
       transform="translate(100 100)"
@@ -14,8 +14,8 @@
   </svg>
 
   <div class="z-20 flex flex-col justify-center items-center">
-    <span class="font-bold text-6xl ml-2">{{ $number }}</span>
-    <p class="font-bold">{{ $text }}</p>
+    <span class="font-bold text-6xl ml-2">{{ $text1 }}</span>
+    <p class="font-bold">{{ $text2 }}</p>
   </div>
 </div>
 </div>

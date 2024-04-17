@@ -6,13 +6,15 @@ use Livewire\Component;
 
 class InfoBubble extends Component
 {
-    public $number;
-    public $text;
+    public $text1;
+    public $text2;
+    public $color;
 
-    public function mount($number, $text)
+    public function mount($text1, $text2, $color)
     {
-        $this->number = $number;
-        $this->text = $text;
+        $this->text1 = $text1;
+        $this->text2 = $text2;
+        $this->color = $color;
     }
 
     public function render()
