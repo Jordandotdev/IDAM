@@ -39,7 +39,7 @@ Route::middleware([
             return view('dashboard');
         })->name('dashboard');
 
-        Route::middleware('SuperAdmin')->resource(
+        Route::resource(
             'user',
             App\Http\Controllers\UserController::class
         );

@@ -5,8 +5,6 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\User;
-use App\Enums\Role;
 
 class SuperAdminMiddleware
 {
@@ -19,7 +17,7 @@ class SuperAdminMiddleware
     {
         $user = $request->user();
 
-        if ($user &&  !in_array(0, $user->roles->pluck('id')->toArray())) {
+        if ($user &&  !in_array(1, $user->roles->pluck('id')->toArray())) {
             return redirect('/')->with('error', "You don't have Superadmin access.");
         }
 

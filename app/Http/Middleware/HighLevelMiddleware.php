@@ -5,8 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\User;
-use App\Enums\Role;
+
 
 class HighLevelMiddleware
 {
@@ -20,8 +19,8 @@ class HighLevelMiddleware
         $user = $request->user();
 
 
-        if ($user && !in_array(1, $user->roles->pluck('id')->toArray())) {
-            abort(403, "You don't have Superadmin access.");
+        if ($user && !in_array(1, $user->roles->pluck('id')->toArray()) && !in_array(2, $user->roles->pluck('id')->toArray())) {
+            abort(403, "You don't have Dashboard access.");
         }
 
         return $next($request);

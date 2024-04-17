@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('Admin_Gate', function ($user) {
-            return $user->role == Role::SuperAdmin; 
+            return $user->role == Role::Admin; 
         });
 
         Gate::define('SuperAdmin_Gate', function ($user) {

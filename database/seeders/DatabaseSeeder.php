@@ -42,8 +42,10 @@ class DatabaseSeeder extends Seeder
             'role' => '1',
         ]);
 
-        $SuperAdmin->roles()->attach(0);
-        $Admin->roles()->attach(1);
+
+
+        $SuperAdmin->roles()->attach(1);
+        $Admin->roles()->attach(2);
         
     }
 }
