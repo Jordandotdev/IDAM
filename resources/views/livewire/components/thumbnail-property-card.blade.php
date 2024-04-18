@@ -11,9 +11,9 @@ to be used as a template --}}
       </div>
     </div>
     <div class="absolute bg-gray-50 -bottom-24 w-56 p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500">
-      <span class="text-gray-400 font-bold text-xs">TAILWIND</span>
-      <span class="text-gray-800 font-bold text-3xl mb-2">Cheat Sheet</span>
-      <p class="text-neutral-800">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <span class="text-gray-400 font-bold text-xs">{{$text1}}</span>
+      <span class="text-gray-800 font-bold text-3xl mb-2">{{$text2}}</span>
+      <p class="text-neutral-800">{{$text3}}</p>
     </div>
     
   
