@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Middleware\AdminMiddleware;
-use App\Http\Middleware\SuperAdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,10 +37,17 @@ Route::middleware([
             return view('dashboard');
         })->name('dashboard');
 
-        Route::resource(
-            'user',
-            App\Http\Controllers\UserController::class
-        );
+
+            Route::group([
+                'middleware'=> [
+                'SuperAdmin',
+            ]], function(){
+                Route::resource(
+                    'user',
+                    App\Http\Controllers\UserController::class
+                );
+            });
+
 
         Route::resource(
             'listings',
