@@ -10,7 +10,7 @@
                 </h1>
                 <p class="px-6 mb-8 text-xl font-normal text-gray-300 lg:text-l">
                     Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term
-                    value and drive economic growth. groeth
+                    value and drive economic growth.
                 </p>
             </div>
         </div>
