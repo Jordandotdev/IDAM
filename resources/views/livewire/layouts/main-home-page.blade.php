@@ -48,8 +48,7 @@
                 properties. Our cutting-edge approach integrates innovative technology, strategic market insights, and
                 robust capital resources to unlock enduring value and catalyze economic prosperity. With Idam, users not
                 only engage in traditional property transactions but also harness the power to bid for rental agreements
-                and dynamically negotiate house prices, empowering individuals and businesses alike to navigate the real
-                estate realm with unparalleled flexibility and efficiency
+                and dynamically negotiate house prices, empowering individuals and businesses alike 
             </p>
 
             <div class="flex flex-wrap mt-4 pb-4 gap-4 justify-left">
