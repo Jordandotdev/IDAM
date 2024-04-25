@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\PropertyType;
+use App\Enums\LocationType;
 use Illuminate\Http\Request;
 use App\Models\Listing;
-use App\Enums\LocationType;
 
 class ListingsController extends Controller
 {
@@ -26,7 +25,7 @@ class ListingsController extends Controller
     {
         return view('admin.Listings.form', [
             'listing' => (new Listing()),
-            'property_type' => PropertyType::cases(),
+            'property_type' => LocationType::cases(),
             'mode' => 'create',
         ]);
     }
@@ -63,7 +62,7 @@ class ListingsController extends Controller
         return view('admin.listings.form', [
             'listing' => $listing,
             'property_type' => PropertyType::cases(),
-            'location_type' => 'location_type',
+            'location_type' => 'property_type',
             'mode' => 'update',
         ]);
     }
@@ -77,7 +76,7 @@ class ListingsController extends Controller
             'title' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'location_type' => 'required',
+            'property_type' => 'required',
         ]);
 
         $listing->update($validated);

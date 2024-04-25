@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('floor_area')->nullable();
             $table->integer('floors')->nullable();
             $table->decimal('land_area', 10, 2)->nullable();
-            $table->enum('availability', ['Available','Sold','In_Disussion'])->nullable();
+            $table->enum('availability', ['Available','Sold','In_Disussion']);
             $table->integer('car_parking_spaces')->nullable();
             $table->tinyInteger('furnishing_status')->nullable();
             $table->integer('age_of_building')->nullable();
@@ -33,7 +33,7 @@ return new class extends Migration
         Schema::create('property_features', function (Blueprint $table) {
             $table->id();
             $table->foreignId('listing_id')->constrained()->onDelete('cascade');
-            $table->string('feature');
+            $table->tinyInteger('feature')->nullable();
             $table->timestamps();
         });
 
