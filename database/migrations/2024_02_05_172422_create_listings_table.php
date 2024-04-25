@@ -16,15 +16,15 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->decimal('price', 10, 2);
-            $table->string('property_type')->nullable();
+            $table->tinyInteger('property_type')->nullable();
             $table->integer('bedrooms')->nullable();
             $table->integer('bathrooms')->nullable();
             $table->integer('floor_area')->nullable();
             $table->integer('floors')->nullable();
             $table->decimal('land_area', 10, 2)->nullable();
-            $table->string('availability')->nullable();
+            $table->enum('availability', ['Available','Sold','In_Disussion'])->nullable();
             $table->integer('car_parking_spaces')->nullable();
-            $table->string('furnishing_status')->nullable();
+            $table->tinyInteger('furnishing_status')->nullable();
             $table->integer('age_of_building')->nullable();
             $table->integer('width_of_approach_road')->nullable();
             $table->timestamps();
@@ -59,7 +59,7 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->foreignId('listing_id')->constrained()->onDelete('cascade');
-            $table->string('path'); // Path to the image file
+            $table->string('path'); 
             $table->timestamps();
         });
     }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Enums;
-enum LocationType: int {
+enum PropertyType: int {
     case appartment = 1;
     case house = 2;
     case office = 3;

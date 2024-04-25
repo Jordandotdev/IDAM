@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Enums\FurnishStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
-use App\Enums\LocationType;
+use App\Enums\PropertyType;
 
 class Listing extends Model
 {
@@ -21,10 +22,12 @@ class Listing extends Model
         'title',
         'description',
         'price',
-        'location_type',
+        'property_type',
+        'furnishing_status'
     ];
 
     protected $casts = [
-        'location_type' => LocationType::class,
+        'property_type' => LocationType::class,
+        'furnishing_status' => FurnishStatus::class,
     ];
 }
