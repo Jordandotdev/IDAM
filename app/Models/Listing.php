@@ -23,7 +23,16 @@ class Listing extends Model
         'description',
         'price',
         'property_type',
-        'furnishing_status'
+        'bedrooms',
+        'bathrooms',
+        'floor_area',
+        'floors',
+        'land_area',
+        'availability',
+        'car_parking_spaces',
+        'furnishing_status',
+        'age_of_building',
+        'width_of_approach_road'
     ];
 
     protected $casts = [
