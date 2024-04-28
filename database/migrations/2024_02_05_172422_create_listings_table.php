@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
+            //need to create a developer user section and foriegn key
+            $table->text('Developer');
             $table->decimal('price', 10, 2);
             $table->tinyInteger('property_type')->nullable();
             $table->integer('bedrooms')->nullable();
