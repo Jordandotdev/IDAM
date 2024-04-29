@@ -22,6 +22,7 @@ class Listing extends Model
         'title',
         'description',
         'price',
+        'developer',
         'property_type',
         'bedrooms',
         'bathrooms',

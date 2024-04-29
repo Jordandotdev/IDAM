@@ -25,7 +25,7 @@ class ListingsController extends Controller
     {
         return view('admin.Listings.form', [
             'listing' => (new Listing()),
-            'property_types' => PropertyType::cases(),
+            'propertyType' => PropertyType::cases(),
             'mode' => 'create',
         ]);
     }
@@ -39,13 +39,10 @@ class ListingsController extends Controller
             'title' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'property_type' => 'required',
+            'property_type' => 'required', 
         ]);
 
-        //store method needs to be updated with the correct model
-
         Listing::create($validated);
-
         return redirect()->route('listings.index')->with('success', 'Listing successfully created!');
     }
 

@@ -85,22 +85,22 @@
                             </div>
 
                             <div class="col-span-full">
-                                <label for="location_type" class="block text-sm font-medium leading-6 text-gray-900">
+                                <label for="property_type" class="block text-sm font-medium leading-6 text-gray-900">
                                     Location Type
                                 </label>
                                 <div class="mt-2">
-                                    <select id="location_type" name="location_type"
+                                    <select id="property_type" name="property_type"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                        @foreach ($property_types as $locationtype)
-                                        <option value="{{ $locationtype->value }}"
-                                            {{ ($listing && old('role', $listing?->locationtype?->value) == $locationtype->value ? 'selected' : '') }}>
-                                            {{ ucwords(str_replace('_', ' ', Str::snake($locationtype->name))) }}
+                                        @foreach ($propertyType as $propertytype)
+                                        <option value="{{ $propertytype->value }}"
+                                            {{ ($listing && old('role', $listing?->propertytype?->value) == $propertytype->value ? 'selected' : '') }}>
+                                            {{ ucwords(str_replace('_', ' ', Str::snake($propertytype->name))) }}
                                         @endforeach
                                 </select>
                                 <p class="mt-3 text-sm leading-6 text-gray-600">
                                     Type of location for the listing.
                                 </p>
-                                @error('property_types')
+                                @error('propertyType')
                                     <p class="mt-3 text-sm leading-6 text-red-600">
                                         {{ $message }}
                                     </p>
