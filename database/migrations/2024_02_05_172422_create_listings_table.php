@@ -18,7 +18,7 @@ return new class extends Migration
             //need to create a developer user section and foriegn key
             $table->text('Developer');
             $table->decimal('price', 10, 2);
-            $table->tinyInteger('property_type')->nullable();
+            $table->tinyInteger('property_type')->default(2);
             $table->integer('bedrooms')->nullable();
             $table->integer('bathrooms')->nullable();
             $table->integer('floor_area')->nullable();
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->decimal('land_area', 10, 2)->nullable();
             $table->enum('availability', ['Available','Sold','In_Disussion']);
             $table->integer('car_parking_spaces')->nullable();
-            $table->tinyInteger('furnishing_status')->nullable();
+            $table->tinyInteger('furnishing_status')->default(1);
             $table->integer('age_of_building')->nullable();
             $table->integer('width_of_approach_road')->nullable();
             $table->timestamps();

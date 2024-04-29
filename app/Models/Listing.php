@@ -36,7 +36,7 @@ class Listing extends Model
     ];
 
     protected $casts = [
-        'property_type' => LocationType::class,
+        'property_type' => PropertyType::class,
         'furnishing_status' => FurnishStatus::class,
     ];
 }

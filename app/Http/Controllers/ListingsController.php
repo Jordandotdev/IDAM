@@ -64,7 +64,7 @@ class ListingsController extends Controller
     {
         return view('admin.listings.form', [
             'listing' => $listing,
-            'property_types' => propertyType::cases(),
+            'propertyType' => propertyType::cases(),
             'mode' => 'update',
         ]);
     }
@@ -78,7 +78,7 @@ class ListingsController extends Controller
             'title' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'property_type' => 'required',
+            'propertyType' => 'required',
         ]);
 
         $listing->update($validated);
