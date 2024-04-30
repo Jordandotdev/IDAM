@@ -29,6 +29,32 @@
                         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
                             <div class="col-span-full">
+                                <label for="property_type" class="block text-sm font-medium leading-6 text-gray-900">
+                                    Location Type
+                                </label>
+                                <div class="mt-2">
+                                    <select id="property_type" name="property_type"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        @foreach ($propertyType as $propertytype)
+                                        <option value="{{ $propertytype->value }}"
+                                            {{ ($listing && old('role', $listing?->propertytype?->value) == $propertytype->value ? 'selected' : '') }}>
+                                            {{ ucwords(str_replace('_', ' ', Str::snake($propertytype->name))) }}
+                                        @endforeach
+                                </select>
+                                <p class="mt-3 text-sm leading-6 text-gray-600">
+                                    Type of location for the listing.
+                                </p>
+                                @error('propertyType')
+                                    <p class="mt-3 text-sm leading-6 text-red-600">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                                </div>
+
+
+                                </div>
+
+                            <div class="col-span-full">
                                 <label for="title" class="block text-sm font-medium leading-6 text-gray-900">
                                     Title
                                 </label>
@@ -84,31 +110,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-span-full">
-                                <label for="property_type" class="block text-sm font-medium leading-6 text-gray-900">
-                                    Location Type
-                                </label>
-                                <div class="mt-2">
-                                    <select id="property_type" name="property_type"
-                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                        @foreach ($propertyType as $propertytype)
-                                        <option value="{{ $propertytype->value }}"
-                                            {{ ($listing && old('role', $listing?->propertytype?->value) == $propertytype->value ? 'selected' : '') }}>
-                                            {{ ucwords(str_replace('_', ' ', Str::snake($propertytype->name))) }}
-                                        @endforeach
-                                </select>
-                                <p class="mt-3 text-sm leading-6 text-gray-600">
-                                    Type of location for the listing.
-                                </p>
-                                @error('propertyType')
-                                    <p class="mt-3 text-sm leading-6 text-red-600">
-                                        {{ $message }}
-                                    </p>
-                                @enderror
-                                </div>
-
-
-                                </div>
+                           
                                 </div>
                                 <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
                                     <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>

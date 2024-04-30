@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('bathrooms')->nullable();
             $table->integer('floor_area')->nullable();
             $table->integer('floors')->nullable();
-            $table->decimal('land_area', 10, 2)->nullable();
+            $table->decimal('land_area', 100, 2)->nullable();
             $table->enum('availability', ['Available','Sold','In_Disussion']);
             $table->integer('car_parking_spaces')->nullable();
             $table->tinyInteger('furnishing_status')->default(1);
