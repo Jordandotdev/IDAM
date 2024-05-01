@@ -4,6 +4,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Listing;
 
 class ThumbnailPropertyCard extends Component
 {
@@ -20,6 +21,7 @@ class ThumbnailPropertyCard extends Component
 
     public function render()
     {
-        return view('livewire.components.thumbnail-property-card');
+        $listings = Listing::all(); 
+        return view('livewire.layouts.main-home-page', ['listings' => $listings]);
     }
 }

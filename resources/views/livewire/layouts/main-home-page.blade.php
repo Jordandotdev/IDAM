@@ -28,9 +28,13 @@
         </div>
 
 
-        <div class="flex flex-row mt-4 gap-4 justify-left">
-            @livewire('thumbnail-property-card', ['text1' => '+20k', 'text2' => 'Customers', 'text3' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.aliquet...'])
-        </div>
+        @foreach ($listings as $listing)
+            @livewire('thumbnail-property-card', [
+                    'text1' => $listing->title, 
+                    'text2' => $listing->description, 
+                    'text3' => $listing->price,
+                ])
+        @endforeach
 
     </section>
 
