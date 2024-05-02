@@ -137,7 +137,7 @@
 
                         </div>
                     </div>
-                @endauth
+                
 
                 <!-- Settings Dropdown -->
                 <div class="ms-3 relative">
@@ -193,6 +193,7 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
+                @endauth
             </div>
 
             <!-- Hamburger -->
@@ -219,6 +220,7 @@
 
         
 
+        @auth
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
@@ -290,5 +292,6 @@
                 @endif
             </div>
         </div>
+        @endauth
     </div>
 </nav>
