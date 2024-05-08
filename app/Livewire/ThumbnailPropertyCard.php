@@ -25,7 +25,6 @@ class ThumbnailPropertyCard extends Component
         
         return view('livewire.layouts.main-home-page', [
             'listings' => Listing::all()
-            ->paginate(6),
         ]);
     }
 }
