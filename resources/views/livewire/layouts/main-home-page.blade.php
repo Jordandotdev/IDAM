@@ -28,13 +28,13 @@
         </div>
 
 
-        @foreach ($listings as $listing)
+        {{-- @foreach ($listings as $listing)
             @livewire('thumbnail-property-card', [
                     'text1' => $listing->title, 
                     'text2' => $listing->description, 
                     'text3' => $listing->price,
                 ])
-        @endforeach
+        @endforeach --}}
 
     </section>
 
