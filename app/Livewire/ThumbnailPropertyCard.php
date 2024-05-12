@@ -8,7 +8,7 @@ use App\Models\Listing;
 
 class ThumbnailPropertyCard extends Component
 {
-    
+
     public $text1;
     public $text2;
     public $text3;
@@ -22,9 +22,10 @@ class ThumbnailPropertyCard extends Component
 
     public function render()
     {
-        
+
+        $listings = Listing::paginate(6);
         return view('livewire.layouts.main-home-page', [
-            'listings' => Listing::all()
+            'listings' => $listings
         ]);
     }
 }
