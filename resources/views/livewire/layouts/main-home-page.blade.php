@@ -23,9 +23,9 @@
     {{-- Featured Porperties section --}}
     <section class="px-6 mt-24 ">
 
-        <div>
+        <h2 class="text-3xl font-bold text-gray-800">Featured Properties</h2>
 
-            <h2 class="text-3xl font-bold text-gray-800">Featured Properties</h2>
+        <div class="flex flex-row gap-4">
 
             @foreach ($listings as $listing)
                 @livewire('thumbnail-property-card', ['text1' => '+20k', 'text2' => $listing->title, 'text3' => 'Customers'])
