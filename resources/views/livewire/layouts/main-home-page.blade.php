@@ -25,10 +25,16 @@
 
         <h2 class="text-3xl font-bold text-gray-800">Featured Properties</h2>
 
-        <div class="flex flex-row gap-4">
+        <div class="flex flex-row gap-4 mt-2">
 
             @foreach ($listings as $listing)
-                @livewire('thumbnail-property-card', ['text1' => '+20k', 'text2' => $listing->title, 'text3' => 'Customers'])
+                @livewire(
+                'thumbnail-property-card',
+                    ['text1' => $listing->price,
+                    'text2' => $listing->title,
+                    'text3' => $listing->description
+                    ]
+                 )
             @endforeach
 
         </div>
@@ -54,8 +60,8 @@
             </p>
 
             <div class="flex flex-wrap mt-4 pb-4 gap-4 justify-left">
-                @livewire('info-bubble', ['text1' => '+20k', 'text2' => 'Customers', 'color' => 'fill-red-300'])
-                @livewire('info-bubble', ['text1' => '+300', 'text2' => 'Properties', 'color' => 'fill-pink-300'])
+                @livewire('info-bubble', ['text1' => $users->count(), 'text2' => 'Customers', 'color' => 'fill-red-300'])
+                @livewire('info-bubble', ['text1' =>  $listings->count(), 'text2' => 'Properties', 'color' => 'fill-pink-300'])
                 @livewire('info-bubble', ['text1' => '+200', 'text2' => 'Million Revenue', 'color' => 'fill-blue-300'])
             </div>
         </div>
