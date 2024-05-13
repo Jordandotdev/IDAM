@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Livewire;
 
 use Livewire\Component;
@@ -8,12 +7,11 @@ use Livewire\Component;
 
 class ThumbnailPropertyCard extends Component
 {
-
     public $text1;
     public $text2;
     public $text3;
 
-    public function mount($text1, $text2, $text3)
+    public function mount($text1, $text2, $text3, $listingId) // Assuming you pass the listing ID
     {
         $this->text1 = $text1;
         $this->text2 = $text2;

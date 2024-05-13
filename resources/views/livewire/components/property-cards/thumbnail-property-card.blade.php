@@ -1,5 +1,6 @@
 {{-- Need to route the table data to the card 
 to be used as a template --}}
+{{-- <a wire:navigate href="{{ route('listing.show', $listing->name) }}">  --}}
 <div
     class="relative group cursor-pointer group overflow-hidden shadow-xl shadow-gray-400 hover:shadow-gray-800 text-gray-50 h-72 w-56  rounded-2xl hover:duration-700 duration-700">
     <div class="w-56 h-72 bg-orange-100 text-gray-800">
@@ -23,3 +24,4 @@ to be used as a template --}}
 
 
 </div>
+{{-- </a> --}}

@@ -51,7 +51,9 @@ class ListingsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('admin.listings.show', [
+            'listing' => Listing::findOrFail($id),
+        ]);
     }
 
     /**

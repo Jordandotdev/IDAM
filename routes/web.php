@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ListingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,35 +19,39 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/listings/property/{listing}', [ListingsController::class, 'show'])->name('listing.show');
 
+//auth routes
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified', 
+    'verified',
 ])->group(function () {
 
-   
+
     //SuperAdmin & Admin routes
     Route::group([
-        'middleware'=> [
-        'HighAuth',
-    ]], function(){
-       
+        'middleware' => [
+            'HighAuth',
+        ]
+    ], function () {
+
 
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
 
 
-            Route::group([
-                'middleware'=> [
+        Route::group([
+            'middleware' => [
                 'SuperAdmin',
-            ]], function(){
-                Route::resource(
-                    'user',
-                    App\Http\Controllers\UserController::class
-                );
-            });
+            ]
+        ], function () {
+            Route::resource(
+                'user',
+                App\Http\Controllers\UserController::class
+            );
+        });
 
 
         Route::resource(
@@ -54,8 +59,8 @@ Route::middleware([
             App\Http\Controllers\ListingsController::class
         );
     });
-    
-    
+
+
 
     //logged user routes
 

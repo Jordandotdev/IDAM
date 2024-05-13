@@ -19,7 +19,10 @@ class HighLevelMiddleware
         $user = $request->user();
 
 
-        if ($user && !in_array(1, $user->roles->pluck('id')->toArray()) && !in_array(2, $user->roles->pluck('id')->toArray())) {
+        if ($user && !in_array(1, $user->roles->pluck('id')->toArray())
+            && !in_array(2, $user->roles->pluck('id')->toArray())
+            && !in_array(4, $user->roles->pluck('id')->toArray())
+        ) {
             abort(403, "You don't have Dashboard access.");
         }
 

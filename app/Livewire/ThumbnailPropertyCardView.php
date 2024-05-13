@@ -8,6 +8,6 @@ class ThumbnailPropertyCardView extends Component
 {
     public function render()
     {
-        return view('livewire.components.property-cards.thumbnail-property-card-view');
+        return view('livewire.layout.thumbnail-property-card-view');
     }
 }

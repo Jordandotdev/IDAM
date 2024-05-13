@@ -40,8 +40,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('Admin'),
         ]);
 
-
-
         $SuperAdmin->roles()->attach(1);
         $Admin->roles()->attach(2);
         

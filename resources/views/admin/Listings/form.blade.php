@@ -13,11 +13,9 @@
                 </div>
 
                 <form method="post"
-                    @if($listing->id)
-                    action="{{ route('listings.update', $listing->id) }}"
+                    @if ($listing->id) action="{{ route('listings.update', $listing->id) }}"
                     @else
-                    action="{{ route('listings.store') }}"
-                    @endif
+                    action="{{ route('listings.store') }}" @endif
                     class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
 
                     @csrf
@@ -36,31 +34,30 @@
                                     <select id="property_type" name="property_type"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         @foreach ($propertyType as $propertytype)
-                                        <option value="{{ $propertytype->value }}"
-                                            {{ ($listing && old('role', $listing?->propertytype?->value) == $propertytype->value ? 'selected' : '') }}>
-                                            {{ ucwords(str_replace('_', ' ', Str::snake($propertytype->name))) }}
+                                            <option value="{{ $propertytype->value }}"
+                                                {{ $listing && old('role', $listing?->propertytype?->value) == $propertytype->value ? 'selected' : '' }}>
+                                                {{ ucwords(str_replace('_', ' ', Str::snake($propertytype->name))) }}
                                         @endforeach
-                                </select>
-                                <p class="mt-3 text-sm leading-6 text-gray-600">
-                                    Type of location for the listing.
-                                </p>
-                                @error('propertyType')
-                                    <p class="mt-3 text-sm leading-6 text-red-600">
-                                        {{ $message }}
+                                    </select>
+                                    <p class="mt-3 text-sm leading-6 text-gray-600">
+                                        Type of location for the listing.
                                     </p>
-                                @enderror
+                                    @error('propertyType')
+                                        <p class="mt-3 text-sm leading-6 text-red-600">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
 
-                                </div>
+                            </div>
 
                             <div class="col-span-full">
                                 <label for="title" class="block text-sm font-medium leading-6 text-gray-900">
                                     Title
                                 </label>
                                 <div class="mt-2">
-                                    <input id="title" name="title"
-                                        value="{{ old('title', $listing->title) }}"
+                                    <input id="title" name="title" value="{{ old('title', $listing->title) }}"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                 </div>
                                 <p class="mt-3 text-sm leading-6 text-gray-600">
@@ -110,16 +107,16 @@
                                 @enderror
                             </div>
 
-                           
-                                </div>
-                                <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-                                    <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
-                                    <button type="submit"
-                                        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
-                                </div>
-                                </form>
-                                </div>
-                                </div>
-                                </div>
-                                </x-app-layout>
-                
+
+                        </div>
+                        <div
+                            class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+                            <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+                            <button type="submit"
+                                class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
