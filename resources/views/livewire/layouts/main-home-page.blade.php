@@ -24,17 +24,11 @@
     <section class="px-6 mt-24 ">
 
         <div>
-            <h2 class="text-3xl font-bold text-gray-800">Featured Properties</h2>
+            <h2 class="text-3xl font-bold text-gray-800">Featured Properties {{$listings->id}}</h2>
         </div>
 
+        {{-- @livewire('thumbnail-property-card') --}}
 
-        @foreach ($listings as $listing)
-            @livewire('thumbnail-property-card', [
-                    'text1' => $listing->title, 
-                    'text2' => $listing->description, 
-                    'text3' => $listing->price,
-                ])
-        @endforeach
 
     </section>
 
@@ -52,7 +46,7 @@
                 properties. Our cutting-edge approach integrates innovative technology, strategic market insights, and
                 robust capital resources to unlock enduring value and catalyze economic prosperity. With Idam, users not
                 only engage in traditional property transactions but also harness the power to bid for rental agreements
-                and dynamically negotiate house prices, empowering individuals and businesses alike 
+                and dynamically negotiate house prices, empowering individuals and businesses alike
             </p>
 
             <div class="flex flex-wrap mt-4 pb-4 gap-4 justify-left">

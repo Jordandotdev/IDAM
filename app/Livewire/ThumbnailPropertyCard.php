@@ -9,23 +9,15 @@ use App\Models\Listing;
 class ThumbnailPropertyCard extends Component
 {
 
-    public $text1;
-    public $text2;
-    public $text3;
+    public $listings;
 
-    public function mount($text1, $text2, $text3)
+    public function mount()
     {
-        $this->text1 = $text1;
-        $this->text2 = $text2;
-        $this->text3 = $text3;
+        $this->listings = Listing::first();
     }
 
     public function render()
     {
-
-        $listings = Listing::paginate(6);
-        return view('livewire.layouts.main-home-page', [
-            'listings' => $listings
-        ]);
+        return view('livewire.layouts.main-home-page');
     }
 }
