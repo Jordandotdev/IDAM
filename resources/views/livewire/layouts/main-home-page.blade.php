@@ -24,15 +24,19 @@
     <section class="px-6 mt-24 ">
 
         <div>
-            <h2 class="text-3xl font-bold text-gray-800">Featured Properties {{$listings->id}}</h2>
+
+            <h2 class="text-3xl font-bold text-gray-800">Featured Properties</h2>
+
+            @foreach ($listings as $listing)
+                @livewire('thumbnail-property-card', ['text1' => '+20k', 'text2' => $listing->title, 'text3' => 'Customers'])
+            @endforeach
+
         </div>
 
-        {{-- @livewire('thumbnail-property-card') --}}
 
 
     </section>
 
-    {{-- section --}}
     <section class="p-6 mt-14 rounded-lg bg-pink-100">
 
         <div>

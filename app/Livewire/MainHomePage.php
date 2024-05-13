@@ -11,7 +11,7 @@ class MainHomePage extends Component
 
     public function mount()
     {
-         $this->listings = Listing::first();
+         $this->listings = Listing::all();
     }
 
     public function render()

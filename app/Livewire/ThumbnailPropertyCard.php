@@ -4,20 +4,24 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Listing;
+
 
 class ThumbnailPropertyCard extends Component
 {
 
-    public $listings;
+    public $text1;
+    public $text2;
+    public $text3;
 
-    public function mount()
+    public function mount($text1, $text2, $text3)
     {
-        $this->listings = Listing::first();
+        $this->text1 = $text1;
+        $this->text2 = $text2;
+        $this->text3 = $text3;
     }
 
     public function render()
     {
-        return view('livewire.layouts.main-home-page');
+        return view('livewire.components.thumbnail-property-card');
     }
 }
