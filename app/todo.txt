@@ -1,0 +1,7 @@
+TO DO
+
+Validations:
+1. create a validation for the price of a property  
+
+Migrations:
+1. create the max price for the price of a property  

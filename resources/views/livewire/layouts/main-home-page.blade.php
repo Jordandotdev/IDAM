@@ -33,6 +33,7 @@
                     ['text1' => $listing->price,
                     'text2' => $listing->title,
                     'text3' => $listing->description,
+                    'listing' => $listing->id,
                     ]
                  )
             @endforeach

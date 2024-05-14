@@ -49,10 +49,10 @@ class ListingsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Listing $listing)
     {
-        return view('admin.listings.show', [
-            'listing' => Listing::findOrFail($id),
+        return view('livewire.layout.thumbnail-property-card-view', [
+            'listing' => Listing::findOrFail($listing),
         ]);
     }
 
