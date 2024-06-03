@@ -39,7 +39,7 @@ class ListingsController extends Controller
             'title' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'property_type' => 'required', 
+            'property_type' => 'required',
         ]);
 
         Listing::create($validated);
@@ -51,9 +51,8 @@ class ListingsController extends Controller
      */
     public function show(Listing $listing)
     {
-        return view('livewire.layout.thumbnail-property-card-view', [
-            'listing' => Listing::findOrFail($listing),
-        ]);
+        $listing = $listing->get();
+        return view('', compact('listing'));
     }
 
     /**

@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/property/{listing:id}', [ListingsController::class, 'show'])->name('listing.show');
+Route::get('/listings/{listing:id}', [ListingsController::class, 'show'])->name('listing.show');
 
 //auth routes
 Route::middleware([
@@ -27,7 +27,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-
 
     //SuperAdmin & Admin routes
     Route::group([

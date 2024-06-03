@@ -28,14 +28,7 @@
         <div class="flex flex-row gap-4 mt-2">
 
             @foreach ($listings as $listing)
-                @livewire(
-                'thumbnail-property-card',
-                    ['text1' => $listing->price,
-                    'text2' => $listing->title,
-                    'text3' => $listing->description,
-                    'listing' => $listing->id,
-                    ]
-                 )
+                <x-property.property-card :listing="$listing" />
             @endforeach
 
         </div>
