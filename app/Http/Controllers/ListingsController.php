@@ -39,12 +39,34 @@ class ListingsController extends Controller
             'title' => 'required|max:255',
             'description' => 'required|string|min:10|max:65535',
             'price' => 'required|numeric|min:0',
-            'property_type' => 'required|in:'. implode(',', array_map(fn($case) => $case->value, PropertyType::cases())), 
+            'property_type' => 'required|in:'. implode(',', array_map(fn($case) => $case->value, PropertyType::cases())),
+            'bedrooms' => 'required|integer|min:1',
+            'bathrooms' => 'required|integer|min:1',
+            'floor_area' => 'required|numeric|min:1',
+            'floors' => 'required|integer|min:1',
+            'land_area' => 'required|numeric|min:1',
+            'car_parking_spaces' => 'required|integer|min:0',
+            'age_of_building' => 'required|integer|min:1',
+            'width_of_approach_road' => 'required|numeric|min:1',
+            'developer' => 'required|string|max:255',
+            'availability' => 'required|in:Available,Sold,In Discussion',
+            'furnishing_status' => 'required|in:1,2', // Assuming 1 for Furnished and 2 for Unfurnished
         ], [
             'title.required' => 'The title field is required.',
             'description.required' => 'The description field is required.',
             'price.required' => 'The price field is required.',
             'property_type.required' => 'The property type field is required.',
+            'bedrooms.required' => 'The number of bedrooms field is required.',
+            'bathrooms.required' => 'The number of bathrooms field is required.',
+            'floor_area.required' => 'The floor area field is required.',
+            'floors.required' => 'The number of floors field is required.',
+            'land_area.required' => 'The land area field is required.',
+            'car_parking_spaces.required' => 'The number of car parking spaces field is required.',
+            'age_of_building.required' => 'The age of the building field is required.',
+            'width_of_approach_road.required' => 'The width of approach road field is required.',
+            'developer.required' => 'The developer field is required.',
+            'availability.required' => 'The availability field is required.',
+            'furnishing_status.required' => 'The furnishing status field is required.',
         ]);
 
         Listing::create($validated);
@@ -69,7 +91,7 @@ class ListingsController extends Controller
     {
         return view('admin.listings.form', [
             'listing' => $listing,
-            'propertyType' => propertyType::cases(),
+            'propertyType' => PropertyType::cases(),
             'mode' => 'update',
         ]);
     }
@@ -83,7 +105,18 @@ class ListingsController extends Controller
             'title' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'propertyType' => 'required',
+            'property_type' => 'required',
+            'bedrooms' => 'required|integer|min:1',
+            'bathrooms' => 'required|integer|min:1',
+            'floor_area' => 'required|numeric|min:1',
+            'floors' => 'required|integer|min:1',
+            'land_area' => 'required|numeric|min:1',
+            'car_parking_spaces' => 'required|integer|min:0',
+            'age_of_building' => 'required|integer|min:1',
+            'width_of_approach_road' => 'required|numeric|min:1',
+            'developer' => 'required|string|max:255',
+            'availability' => 'required|in:Available,Sold,In Discussion',
+            'furnishing_status' => 'required|in:1,2', // Assuming 1 for Furnished and 2 for Unfurnished
         ]);
 
         $listing->update($validated);

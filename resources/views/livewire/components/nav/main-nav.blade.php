@@ -45,7 +45,13 @@
                             <a href="{{ url('dashboard') }}"
                                 class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:scale-1.01">Dashboard</a>
                         @endcan
-                        @can('')
+                        @can('propOwner_Gate')
+                            <a href="{{ url('listings') }}"
+                                class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:scale-1.01">My
+                                listings</a>
+                        @endcan
+                        {{-- Need to add the route for the contracts --}}
+                        @can('Customer_Gate')
                             <a href="{{ url('dashboard') }}"
                                 class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:scale-1.01">My Contracts</a>
                         @endcan

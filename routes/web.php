@@ -15,20 +15,20 @@ use App\Http\Controllers\ListingsController;
 */
 
 //general routes
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
 Route::get('/Listings/{listing:id}', [ListingsController::class, 'show'])->name('listing.show');
 
-//auth routes
+//Authenticated User Routes
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-
-    //Authenticated User Routes
     Route::group([
         'middleware' => [
             'HighAuth',
