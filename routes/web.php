@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/listings/{listing:id}', [ListingsController::class, 'show'])->name('listing.show');
+Route::get('/Listings/{listing:id}', [ListingsController::class, 'show'])->name('listing.show');
 
 //auth routes
 Route::middleware([

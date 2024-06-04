@@ -51,8 +51,10 @@ class ListingsController extends Controller
      */
     public function show(Listing $listing)
     {
-        $listing = $listing->get();
-        return view('', compact('listing'));
+        return view('Listings.show', [
+            'listing' => $listing,
+            'mode' => 'show',
+        ]);
     }
 
     /**
