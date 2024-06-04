@@ -28,7 +28,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
-    //SuperAdmin & Admin routes
+    //Authenticated User Routes
     Route::group([
         'middleware' => [
             'HighAuth',
@@ -36,11 +36,13 @@ Route::middleware([
     ], function () {
 
 
+        //general routes : Auth
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
 
 
+        //Super Admin specific routes
         Route::group([
             'middleware' => [
                 'SuperAdmin',
@@ -52,39 +54,20 @@ Route::middleware([
             );
         });
 
-        Route::resource(
-            'listings',
-            App\Http\Controllers\ListingsController::class
-        );
-    });
 
-
-    //property owner routes 
-
-    Route::group([
-        'middleware' => [
-            'MiddleAuth',
-        ]
-    ], function () {
-        
-        //propert owner and customer routes
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
-
-        //exclusive property owner routes
+        //joint routes for Listings
+        // Super Admin, Admin, Property Owner
         Route::group([
             'middleware' => [
-                'propOwner',
+                'Listings',
             ]
         ], function () {
-
             Route::resource(
                 'listings',
                 App\Http\Controllers\ListingsController::class
             );
-
         });
+
     });
 
 });

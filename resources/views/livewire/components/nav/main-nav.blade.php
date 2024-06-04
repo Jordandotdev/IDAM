@@ -45,7 +45,7 @@
                             <a href="{{ url('dashboard') }}"
                                 class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:scale-1.01">Dashboard</a>
                         @endcan
-                        @can('MiddleAuth_Gate')
+                        @can('')
                             <a href="{{ url('dashboard') }}"
                                 class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:scale-1.01">My Contracts</a>
                         @endcan

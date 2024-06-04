@@ -69,6 +69,6 @@ class Kernel extends HttpKernel
         'HighAuth' => \App\Http\Middleware\HighLevelMiddleware::class,
         'propOwner' => \App\Http\Middleware\PropertyOwnerMiddlerware::class,
         'Customer' => \App\Http\Middleware\CustomerMiddlerware::class,
-        'MiddleAuth' => \App\Http\Middleware\MiddleLevelMiddleware::class,
+        'Listings' => \App\Http\Middleware\ListingsMiddleware::class,
     ];
 }
