@@ -59,38 +59,32 @@ Route::middleware([
     });
 
 
-    //property owner routes
+    //property owner routes 
 
     Route::group([
         'middleware' => [
-            'propOwner',
+            'MiddleAuth',
         ]
     ], function () {
-
+        
+        //propert owner and customer routes
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
 
-        Route::resource(
-            'listings',
-            App\Http\Controllers\ListingsController::class
-        );
-    });
-
-
-    //logged user routes
-
-    Route::group(
-        [
+        //exclusive property owner routes
+        Route::group([
             'middleware' => [
-              'Customer',
+                'propOwner',
             ]
-        ],function () {
+        ], function () {
 
-            Route::get('/dashboard', function () {
-                return view('dashboard');
-            })->name('dashboard');
+            Route::resource(
+                'listings',
+                App\Http\Controllers\ListingsController::class
+            );
 
         });
+    });
 
 });
