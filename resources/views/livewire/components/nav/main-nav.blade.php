@@ -5,6 +5,7 @@
     <div class="flex justify-between h-16 px-8 shadow-lg shadow-gray-300">
         <div class="flex">
 
+            {{-- main links --}}
             <!-- Logo -->
             <div class="shrink-0 flex items-center">
                 <a href="{{ route('welcome') }}" class="flex items-center">
@@ -23,17 +24,18 @@
                     {{ __('Home') }}
                 </x-nav-link>
 
-                
+
             </div>
         </div>
     </div>
 
 
-    <div class=" sm:flex sm:justify-center sm:items-center bg-dots-darker bg-center bg-gray-100 selection:bg-red-500 selection:text-white">
+    <div
+        class=" sm:flex sm:justify-center sm:items-center bg-dots-darker bg-center bg-gray-100 selection:bg-red-500 selection:text-white">
         @if (Route::has('login'))
             <div class=" sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                 <div class="p-4 bg-gray-400 flex gap-4 items-center rounded-md">
-                    {{-- main links --}}
+
 
 
 
@@ -41,7 +43,11 @@
                     @auth
                         @can('HighAuth_Gate')
                             <a href="{{ url('dashboard') }}"
-                                class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                                class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:scale-1.01">Dashboard</a>
+                        @endcan
+                        @can('MiddleAuth_Gate')
+                            <a href="{{ url('dashboard') }}"
+                                class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:scale-1.01">My Contracts</a>
                         @endcan
 
                         <x-dropdown align="right" width="48">

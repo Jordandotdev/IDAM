@@ -52,6 +52,24 @@ Route::middleware([
             );
         });
 
+        Route::resource(
+            'listings',
+            App\Http\Controllers\ListingsController::class
+        );
+    });
+
+
+    //property owner routes
+
+    Route::group([
+        'middleware' => [
+            'propOwner',
+        ]
+    ], function () {
+
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('dashboard');
 
         Route::resource(
             'listings',
@@ -60,11 +78,19 @@ Route::middleware([
     });
 
 
-
     //logged user routes
 
+    Route::group(
+        [
+            'middleware' => [
+              'Customer',
+            ]
+        ],function () {
 
-    //property owner routes
+            Route::get('/dashboard', function () {
+                return view('dashboard');
+            })->name('dashboard');
 
+        });
 
 });

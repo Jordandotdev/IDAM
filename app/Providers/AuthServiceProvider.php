@@ -29,6 +29,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->roles->pluck('id')->contains(1) || $user->roles->pluck('id')->contains(2);
         });
 
+        Gate::define('MiddleAuth_Gate', function ($user) {
+            return $user->roles->pluck('id')->contains(3) || $user->roles->pluck('id')->contains(4);
+        });
+
         Gate::define('Admin_Gate', function ($user) {
             return $user->roles->pluck('id')->contains(2);
         });
@@ -37,5 +41,12 @@ class AuthServiceProvider extends ServiceProvider
             return $user->roles->pluck('id')->contains(1);
         });
 
+        Gate::define('propOwner_Gate', function ($user) {
+            return $user->roles->pluck('id')->contains(4);
+        });
+
+        Gate::define('Customer_Gate', function ($user) {
+            return $user->roles->pluck('id')->contains(3);
+        });
     }
 }
