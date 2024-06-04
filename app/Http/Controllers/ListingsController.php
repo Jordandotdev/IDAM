@@ -36,10 +36,15 @@ class ListingsController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'price' => 'required',
-            'property_type' => 'required',
+            'title' => 'required|max:255',
+            'description' => 'required|string|min:10|max:65535',
+            'price' => 'required|numeric|min:0',
+            'property_type' => 'required|in:'. implode(',', array_map(fn($case) => $case->value, PropertyType::cases())), 
+        ], [
+            'title.required' => 'The title field is required.',
+            'description.required' => 'The description field is required.',
+            'price.required' => 'The price field is required.',
+            'property_type.required' => 'The property type field is required.',
         ]);
 
         Listing::create($validated);

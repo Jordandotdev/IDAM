@@ -18,15 +18,22 @@
         
             @livewire('main-nav')
             
-            <article class="col-span-4 md:col-span-3 mt-24 mx-auto py-5 w-full" style="max-width:700px">
+            <article class="col-span-4 md:col-span-3 mt-24 mx-auto py-5 w-full" style="max-width:1200px">
 
                 <div class="container mx-auto">
                     <div class="flex justify-between items-center">
                         <h1 class="text-3xl font-bold">{{$listing->title}}</h1>
                     </div>
+                    <p class="text-gray-600">Rs: {{$listing->price}}</p>
                     <p class="text-gray-600">{{$listing->description}}</p>
+                    <p class="text-gray-600">{{$listing->property_type->name}}</p>    
                 </div>
+
+                @livewire('bid-listings')
+
             </article>
+
+            
 
             @livewire('main-footer')
 

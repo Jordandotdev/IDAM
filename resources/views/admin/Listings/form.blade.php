@@ -26,6 +26,7 @@
                     <div class="px-4 py-6 sm:p-8">
                         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
+                            {{-- Location Type --}}
                             <div class="col-span-full">
                                 <label for="property_type" class="block text-sm font-medium leading-6 text-gray-900">
                                     Location Type
@@ -52,6 +53,7 @@
 
                             </div>
 
+                            {{-- Title --}}
                             <div class="col-span-full">
                                 <label for="title" class="block text-sm font-medium leading-6 text-gray-900">
                                     Title
@@ -70,6 +72,7 @@
                                 @enderror
                             </div>
 
+                            {{-- Description --}}
                             <div class="col-span-full">
                                 <label for="description" class="block text-sm font-medium leading-6 text-gray-900">
                                     Description
@@ -88,6 +91,7 @@
                                 @enderror
                             </div>
 
+                            {{-- Price --}}
                             <div class="col-span-full">
                                 <label for="price" class="block text-sm font-medium leading-6 text-gray-900">
                                     Price
