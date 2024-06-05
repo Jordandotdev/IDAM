@@ -24,13 +24,18 @@
                     <div class="flex justify-between items-center">
                         <h1 class="text-3xl font-bold">{{$listing->title}}</h1>
                     </div>
-                    <p class="text-gray-600">Rs: {{$listing->price}}</p>
-                    <p class="text-gray-600">{{$listing->description}}</p>
-                    <p class="text-gray-600">{{$listing->property_type->name}}</p>    
+                    <div class="flex gap-10 mt-2">
+                        <p class="text-gray-600">Rs: {{$listing->price}}</p>
+                        <p class="text-gray-600">Type: {{$listing->property_type->name}}</p>  
+                        <p class="text-gray-600">Availability: {{$listing->availability}}</p>
+                        <p class="text-gray-600">Rooms: {{$listing->bedrooms}}</p>
+                    </div>  
+                    <p class="text-gray-600 pt-10">{{$listing->description}}</p>
                 </div>
 
-                @livewire('bid-listings')
-
+                <div class="mt-4">
+                    @livewire('bid-listings')
+                </div>
             </article>
 
             

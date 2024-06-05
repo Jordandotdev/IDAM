@@ -17,7 +17,7 @@
             class="absolute bg-gray-50 -bottom-24 w-56 p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500">
             <span class="text-gray-400 font-bold text-xs">{{ $listing->price }}</span>
             <span class="text-gray-800 font-bold text-3xl mb-2">{{ $listing->title }}</span>
-            <p class="text-neutral-800">{{ $listing->description }}</p>
+            <p class="text-neutral-800">{{ $listing->getDescriptionExcerpt() }}</p>
         </div>
 
 

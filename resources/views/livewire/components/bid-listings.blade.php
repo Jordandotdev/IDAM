@@ -1,3 +1,3 @@
 <div>
-    This is a bid
+    <button wire:click="showBids">Show Bids</button>
 </div>

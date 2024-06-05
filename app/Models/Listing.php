@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use App\Enums\PropertyType;
+use Illuminate\Support\Str;
 
 class Listing extends Model
 {
@@ -40,4 +41,14 @@ class Listing extends Model
         'property_type' => PropertyType::class,
         'furnishing_status' => FurnishStatus::class,
     ];
+
+    public function getDescriptionExcerpt() // This is an accessor method that returns the excerpt of the post.
+    {
+        return Str::limit(strip_tags($this->description), 100);
+    }
+
+    public function getTitleExcerpt() // This is an accessor method that returns the excerpt of the post.
+    {
+        return Str::limit(strip_tags($this->title), 10);
+    }
 }
