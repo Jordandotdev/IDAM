@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Listing;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\User;
+use App\Models\Listing;
 
 return new class extends Migration
 {
@@ -13,12 +13,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bids', function (Blueprint $table) {
+        Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->decimal('base_bid', 10, 2);
-            $table->decimal('current_bid', 10, 2);
+            $table->string('agreement', 500);
+            $table->integer('contract_period')->default(3);
+            $table->decimal('contract_price');
+
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Listing::class);
+
+            $table->date('bid_date')->nullable();
+            $table->time('bid_time')->default("00:00:00")->nullable();
+            $table->integer('bid_duration')->default(24)->nullable();        
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bids');
+        Schema::dropIfExists('contracts');
     }
 };
