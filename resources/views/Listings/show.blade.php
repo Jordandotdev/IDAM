@@ -25,7 +25,7 @@
                 <h1 class="text-3xl font-bold">{{ $listing->title }}</h1>
             </div>
             <div class="flex gap-10 mt-2">
-                <p class="text-gray-600">Rs: {{ $listing->price }}</p>
+                <p class="text-gray-600">Rs: {{ number_format($listing->price) }}</p>
                 <p class="text-gray-600">Type: {{ $listing->property_type->name }}</p>
                 <p class="text-gray-600">Availability: {{ $listing->availability }}</p>
                 <p class="text-gray-600">Rooms: {{ $listing->bedrooms }}</p>

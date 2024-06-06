@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListingsController;
+use App\Http\Controllers\ContractsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,6 @@ Route::middleware([
         ]
     ], function () {
 
-
         //general routes : Auth
         Route::get('/dashboard', function () {
             return view('dashboard');
@@ -44,18 +44,10 @@ Route::middleware([
         Route::post('/place-bid', [App\Http\Controllers\BidsController::class, 'placeBid'])->name('placeBid');
         Route::get('/bids/{listingId}', [App\Http\Controllers\BidsController::class, 'getBidsByListing'])->name('getBidsByListing');
 
-        //Super Admin specific routes
-        Route::group([
-            'middleware' => [
-                'SuperAdmin',
-            ]
-        ], function () {
-            Route::resource(
-                'user',
-                App\Http\Controllers\UserController::class
-            );
-        });
-
+        Route::resource(
+            'contracts',
+            App\Http\Controllers\ContractsController::class
+        );
 
         //joint routes for Listings
         // Super Admin, Admin, Property Owner
@@ -67,6 +59,18 @@ Route::middleware([
             Route::resource(
                 'listings',
                 App\Http\Controllers\ListingsController::class
+            );
+        });
+
+        //Super Admin specific routes
+        Route::group([
+            'middleware' => [
+                'SuperAdmin',
+            ]
+        ], function () {
+            Route::resource(
+                'user',
+                App\Http\Controllers\UserController::class
             );
         });
 
