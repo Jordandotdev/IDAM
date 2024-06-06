@@ -17,7 +17,6 @@
     <body class="flex flex-col">
         
             @livewire('main-nav')
-            
             <article class="col-span-4 md:col-span-3 mt-24 mx-auto py-5 w-full" style="max-width:1200px">
 
                 <div class="container mx-auto">
@@ -34,13 +33,13 @@
                 </div>
 
                 <div class="mt-4">
-                    @livewire('bid-listings')
+                    @livewire('bid-listings', ['id' => $listing->id, 'price' => $listing->price])
+                    {{-- <x-bid.bid-listing :price="$listing->price" :listingId="$listing->id" /> --}}
                 </div>
             </article>
 
             
 
             @livewire('main-footer')
-
     </body>
 </html>

@@ -41,6 +41,8 @@ Route::middleware([
             return view('dashboard');
         })->name('dashboard');
 
+        Route::post('/place-bid', [App\Http\Controllers\BidsController::class, 'placeBid'])->name('placeBid');
+        Route::get('/bids/{listingId}', [App\Http\Controllers\BidsController::class, 'getBidsByListing'])->name('getBidsByListing');
 
         //Super Admin specific routes
         Route::group([

@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Bid;
+use App\Models\Listing;
 
 
 class User extends Authenticatable
@@ -64,5 +66,15 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function bid()
+    {
+        return $this->hasMany(Bid::class);
+    }
+
+    public function listing()
+    {
+        return $this->hasMany(Listing::class);
     }
 }

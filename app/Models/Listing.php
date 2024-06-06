@@ -10,6 +10,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use App\Enums\PropertyType;
 use Illuminate\Support\Str;
+use App\Models\Bid;
+use App\Models\User;
 
 class Listing extends Model
 {
@@ -41,6 +43,16 @@ class Listing extends Model
         'property_type' => PropertyType::class,
         'furnishing_status' => FurnishStatus::class,
     ];
+
+    public function bid()
+    {
+        return $this->hasMany(Bid::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function getDescriptionExcerpt() // This is an accessor method that returns the excerpt of the post.
     {
