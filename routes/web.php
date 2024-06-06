@@ -44,10 +44,7 @@ Route::middleware([
         Route::post('/place-bid', [App\Http\Controllers\BidsController::class, 'placeBid'])->name('placeBid');
         Route::get('/bids/{listingId}', [App\Http\Controllers\BidsController::class, 'getBidsByListing'])->name('getBidsByListing');
 
-        Route::resource(
-            'contracts',
-            App\Http\Controllers\ContractsController::class
-        );
+        Route::resource('contracts', ContractsController::class);
 
         //joint routes for Listings
         // Super Admin, Admin, Property Owner

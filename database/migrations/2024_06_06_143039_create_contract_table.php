@@ -15,17 +15,13 @@ return new class extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->string('agreement', 500);
+            $table->foreignIdFor(Listing::class)->constrained(); // Assuming this links to the listing the contract is for
+            $table->string('agreement', 1500);
             $table->integer('contract_period')->default(3);
-            $table->decimal('contract_price');
-
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Listing::class);
-
             $table->date('bid_date')->nullable();
             $table->time('bid_time')->default("00:00:00")->nullable();
-            $table->integer('bid_duration')->default(24)->nullable();        
-            $table->boolean('status')->default(0);
+            $table->integer('bid_duration')->default(24)->nullable();
+            $table->enum('status', ['Rent', 'Sale'])->default('Rent');
             $table->timestamps();
         });
     }

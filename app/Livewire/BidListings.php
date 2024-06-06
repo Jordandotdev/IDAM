@@ -47,7 +47,7 @@ class BidListings extends Component
         $this->minBid = round(($percentageIncrease + $fixedAmount + $this->lastCurrentBid) / 100) * 100;
     } else {
         $percentageIncrease = 0.001 * $this->base_bid;
-        $fixedAmount = 500;
+        $fixedAmount = 1000;
         $this->minBid = round(($percentageIncrease + $fixedAmount + $this->base_bid) / 100) * 100;
     }
 }
