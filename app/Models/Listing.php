@@ -54,6 +54,11 @@ class Listing extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class);
+    }
+
     public function getDescriptionExcerpt() // This is an accessor method that returns the excerpt of the post.
     {
         return Str::limit(strip_tags($this->description), 100);

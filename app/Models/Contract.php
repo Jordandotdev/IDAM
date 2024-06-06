@@ -4,17 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\Listing;
 
-class Bid extends Model
+class Contract extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'base_bid',
-        'current_bid',
+        'agreement',
+        'contract_period',
+        'contract_price',
+        'bid_date',
+        'bid_time',
+        'bid_duration',
+        'status',
     ];
 
     public function user()
@@ -27,8 +29,8 @@ class Bid extends Model
         return $this->belongsTo(Listing::class);
     }
 
-    public function contract()
+    public function bid()
     {
-        return $this->belongsTo(Contract::class);
+        return $this->hasMany(Bid::class);
     }
 }
