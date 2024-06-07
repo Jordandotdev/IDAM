@@ -7,6 +7,9 @@
                         <img class="rounded-t-lg transform transition-all duration-500 hover:object-scale-down"
                             src="{{ asset('images/' . $listing->images->first()->path) }}" alt="" />
                     </a>
+                    <div class="relative px-4 bottom-[30px]">
+                        <p class="text-white px-1 py-0.5 rounded-2xl bg-green-500 w-20 text-center text-sm ">for {{ $listing->status }}</p>
+                    </div>
                     <div class="p-5">
                         <a href="#">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

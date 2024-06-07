@@ -43,7 +43,6 @@ class ContractsController extends Controller
             'bid_date' => 'nullable|date',
             'bid_time' => 'nullable|date_format:H:i',
             'bid_duration' => 'nullable|integer|min:24',
-            'status' => 'required|in:Rent,Sale',
         ]);
 
         Contract::create($validatedData);
@@ -76,7 +75,6 @@ class ContractsController extends Controller
             'bid_date' => 'nullable|date',
             'bid_time' => 'nullable|date_format:H:i',
             'bid_duration' => 'nullable|integer|min:24',
-            'status' => 'nullable|in:Rent,Sale',
         ]);
 
         $contract->update($validatedData);

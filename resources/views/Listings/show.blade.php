@@ -31,6 +31,7 @@
                 <h1 class="text-3xl font-bold">{{ $listing->title }}</h1>
             </div>
             <div class="flex gap-2 mt-2">
+                <p class="text-white p-2 bg-green-500 rounded">Status: for {{ $listing->status }}</p>
                 <p class="text-white p-2 bg-slate-500 rounded">Price Rs: {{ number_format($listing->price) }}</p>
                 <p class="text-white p-2 bg-slate-500 rounded">Type: {{ $listing->property_type->name }}</p>
                 <p class="text-white p-2 bg-slate-500 rounded">Availability: {{ $listing->availability }}</p>
@@ -42,22 +43,29 @@
                 <p class="text-white text-sm p-1 bg-gray-800 rounded">Floors: {{ $listing->floors }}</p>
                 <p class="text-white text-sm p-1 bg-gray-800 rounded">Floor Aread: {{ $listing->floor_area }}</p>
                 <p class="text-white text-sm p-1 bg-gray-800 rounded">Land Area: {{ $listing->land_area }}</p>
-                <p class="text-white text-sm p-1 bg-gray-800 rounded">Parking Spaces: {{ $listing->car_parking_spaces}}</p>
-                <p class="text-white text-sm p-1 bg-gray-800 rounded">Furnishing Status: {{ $listing->furnishing_status}}</p>
-                <p class="text-white text-sm p-1 bg-gray-800 rounded">Age of Building: {{ $listing->age_of_building}}</p>
-                <p class="text-white text-sm p-1 bg-gray-800 rounded">Width of Approach Road: {{ $listing->width_of_approach_road}}</p>
+                <p class="text-white text-sm p-1 bg-gray-800 rounded">Parking Spaces:
+                    {{ $listing->car_parking_spaces }}</p>
+                <p class="text-white text-sm p-1 bg-gray-800 rounded">Furnishing Status:
+                    {{ $listing->furnishing_status }}</p>
+                <p class="text-white text-sm p-1 bg-gray-800 rounded">Age of Building: {{ $listing->age_of_building }}
+                </p>
+                <p class="text-white text-sm p-1 bg-gray-800 rounded">Width of Approach Road:
+                    {{ $listing->width_of_approach_road }}</p>
             </div>
         </div>
-        
+
 
         <div class="mt-4  pt-10">
             <h2 class="text-2xl font-bold">Description</h2>
             <p class="text-gray-600 pt-2">{{ $listing->description }}</p>
         </div>
 
-
         <div class="mt-4">
-            @livewire('bid-listings', ['id' => $listing->id, 'price' => $listing->price])
+            @if ($listing->contract)
+                @livewire('bid-listings', ['id' => $listing->id, 'price' => $listing->price])
+            @else
+                
+            @endif
         </div>
     </article>
 

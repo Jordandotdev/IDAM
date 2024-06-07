@@ -23,6 +23,7 @@ class Listing extends Model
     use TwoFactorAuthenticatable;
 
     protected $fillable = [
+        'status',
         'title',
         'description',
         'price',
@@ -57,7 +58,7 @@ class Listing extends Model
 
     public function contract()
     {
-        return $this->belongsTo(Contract::class);
+        return $this->hasOne(Contract::class);
     }
 
     public function images()

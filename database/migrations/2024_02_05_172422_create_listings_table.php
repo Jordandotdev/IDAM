@@ -13,6 +13,7 @@ return new class extends Migration {
     {
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
+            $table->enum('status', ['Rent', 'Sale'])->default('Rent');
             $table->string('title');
             $table->text('description');
             $table->text('developer')->nullable();

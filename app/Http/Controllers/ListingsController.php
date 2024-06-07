@@ -48,6 +48,7 @@ class ListingsController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'status' => 'required|in:Rent,Sale',
             'title' => 'required|max:255',
             'description' => 'required|string|min:10|max:65535',
             'price' => 'required|numeric|min:0',
@@ -65,6 +66,7 @@ class ListingsController extends Controller
             'availability' => 'required|in:Available,Sold,In Discussion',
             'furnishing_status' => 'required|in:1,2', 
         ], [
+            'status.required' => 'The status field is required.',
             'title.required' => 'The title field is required.',
             'description.required' => 'The description field is required.',
             'price.required' => 'The price field is required.',
@@ -126,6 +128,7 @@ class ListingsController extends Controller
     public function update(Request $request, Listing $listing)
     {
         $validated = $request->validate([
+            'status' => 'required|in:Rent,Sale',
             'title' => 'required',
             'description' => 'required',
             'price' => 'required',

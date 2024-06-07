@@ -21,7 +21,6 @@ return new class extends Migration
             $table->date('bid_date')->nullable();
             $table->time('bid_time')->default("00:00:00")->nullable();
             $table->integer('bid_duration')->default(24)->nullable();
-            $table->enum('status', ['Rent', 'Sale'])->default('Rent');
             $table->timestamps();
         });
     }
