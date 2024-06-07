@@ -14,6 +14,17 @@ class ListingsController extends Controller
      */
     public function index()
     {
+        // $userID = auth()->user()->id;
+        // $userRole = auth()->user()->role;
+
+        // if ($userRole == 4) {
+        //     $listings = auth()->user()->listings()->paginate(10);
+        // } else {
+        //     $listings = Listing::paginate(10);
+        // }
+
+        // return view('admin.Listings.index', ['listings' => $listings]);
+
         return view('admin.Listings.index', [
             'listings' => Listing::paginate(10),
         ]);
@@ -41,7 +52,7 @@ class ListingsController extends Controller
             'description' => 'required|string|min:10|max:65535',
             'price' => 'required|numeric|min:0',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'property_type' => 'required|in:'. implode(',', array_map(fn($case) => $case->value, PropertyType::cases())),
+            'property_type' => 'required|in:' . implode(',', array_map(fn($case) => $case->value, PropertyType::cases())),
             'bedrooms' => 'required|integer|min:1',
             'bathrooms' => 'required|integer|min:1',
             'floor_area' => 'required|numeric|min:1',
@@ -52,7 +63,7 @@ class ListingsController extends Controller
             'width_of_approach_road' => 'required|numeric|min:1',
             'developer' => 'required|string|max:255',
             'availability' => 'required|in:Available,Sold,In Discussion',
-            'furnishing_status' => 'required|in:1,2', // Assuming 1 for Furnished and 2 for Unfurnished
+            'furnishing_status' => 'required|in:1,2', 
         ], [
             'title.required' => 'The title field is required.',
             'description.required' => 'The description field is required.',
@@ -72,13 +83,13 @@ class ListingsController extends Controller
             'furnishing_status.required' => 'The furnishing status field is required.',
         ]);
 
-        $listing = Listing::create($validated);
+        $listing = Listing::create(array_merge($validated, ['user_id' => auth()->id()]));
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $imageName = time().'_'.$image->getClientOriginalName();
+                $imageName = time() . '_' . $image->getClientOriginalName();
                 $image->move(public_path('images'), $imageName);
-    
+
                 $listing->images()->create(['path' => $imageName]);
             }
         }
@@ -137,9 +148,9 @@ class ListingsController extends Controller
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $imageName = time().'_'.$image->getClientOriginalName();
+                $imageName = time() . '_' . $image->getClientOriginalName();
                 $image->move(public_path('images'), $imageName);
-    
+
                 $listing->images()->create(['path' => $imageName]);
             }
         }

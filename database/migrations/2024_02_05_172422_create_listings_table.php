@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 return new class extends Migration {
     /**
@@ -27,6 +28,8 @@ return new class extends Migration {
             $table->tinyInteger('furnishing_status')->default(1);
             $table->integer('age_of_building')->nullable();
             $table->integer('width_of_approach_road')->nullable();
+            // $table->unsignedBigInteger('user_id');
+            // $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
 

@@ -68,12 +68,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    public function bid()
+    public function bids()
     {
         return $this->hasMany(Bid::class);
     }
 
-    public function listing()
+    public function listings()
     {
         return $this->hasMany(Listing::class);
     }
