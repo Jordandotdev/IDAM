@@ -48,15 +48,16 @@
     @else
         <a wire:navigate class="text-blue-500 underline py-1" href="{{ route('login') }}">Login to Place Bids</a>
     @endauth
+    <h1 class=" my-4 p-2 bg-gray-200 rounded-xl">Minimum Bid possible - Rs: {{number_format($minBid + 50)}}</h1>
     <div class="user-bids px-3 py-2 mt-5">
-        <h1>Recent Bids</h1>
-        <h1>Minimum Bid possible - {{$minBid + 50}}</h1>
+        
+        <h1 class="text-gray-400">Recent Bids :</h1>
         @forelse($this->bids->sortByDesc('current_bid')->take(3) as $bid)
             <div class="bid [&:not(:last-child)]:border-b border-gray-100 py-5">
-                <div class="user-meta flex mb-4 text-sm items-center">
+                <div class="user-meta flex  text-sm items-center">
                     <span class="text-gray-900 font-semibold">{{ $bid->user->name }}</span>
                     <span class="text-gray-500">. {{ $bid->created_at->diffForHumans() }} -
-                        ${{ number_format($bid->current_bid, 2) }}</span>
+                        Rs:{{ number_format($bid->current_bid, 2) }}</span>
                 </div>
             </div>
         @empty

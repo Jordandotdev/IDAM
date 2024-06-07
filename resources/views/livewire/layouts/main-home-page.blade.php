@@ -37,7 +37,7 @@
 
     </section>
 
-    <section class="p-6 mt-14 rounded-lg bg-pink-100">
+    <section class="p-6 mt-14 rounded-lg bg-gray-200">
 
         <div>
             <h2 class=" text-3xl font-bold text-gray-800">About Us</h2>

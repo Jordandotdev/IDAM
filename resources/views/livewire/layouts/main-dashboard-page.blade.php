@@ -17,9 +17,7 @@
         </h1>
         <div class="bg-gray-100 overflow-hidden shadow-xl sm:rounded-lg">
             <div class="flex p-8 gap-2">
-                @livewire('info-bubble', ['text1' => $users->count(), 'text2' => 'Customers', 'color' => 'fill-red-300'])
-                @livewire('info-bubble', ['text1' =>  $listings->count(), 'text2' => 'Properties', 'color' => 'fill-pink-300'])
-                @livewire('info-bubble', ['text1' => '+200', 'text2' => 'Million Revenue', 'color' => 'fill-blue-300'])
+               @livewire('dashboard-progress-chart')
             </div>
         </div>
     </div>
