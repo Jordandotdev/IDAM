@@ -24,6 +24,9 @@
                     {{ __('Home') }}
                 </x-nav-link>
 
+                <x-nav-link href="{{ route('PropertyView') }}">
+                    {{ __('Properties') }}
+                </x-nav-link>
 
             </div>
         </div>

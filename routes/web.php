@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/property', function () {
+    return view('PropertyView');
+})->name('PropertyView');
+
 Route::get('/Listings/{listing:id}', [ListingsController::class, 'show'])->name('listing.show');
 
 //Authenticated User Routes
@@ -40,9 +44,6 @@ Route::middleware([
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
-
-        Route::post('/place-bid', [App\Http\Controllers\BidsController::class, 'placeBid'])->name('placeBid');
-        Route::get('/bids/{listingId}', [App\Http\Controllers\BidsController::class, 'getBidsByListing'])->name('getBidsByListing');
 
         Route::resource('contracts', ContractsController::class);
 
