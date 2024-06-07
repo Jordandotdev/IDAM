@@ -1,7 +1,8 @@
 <a wire:navigate href="{{ route('listing.show', $listing->id) }}">
     <div
         class="relative group cursor-pointer group overflow-hidden shadow-xl shadow-gray-400 hover:shadow-gray-800 text-gray-50 h-72 w-56  rounded-2xl hover:duration-700 duration-700">
-        <div class="w-56 h-72 bg-orange-100 text-gray-800">
+        <div class="w-56 h-72 bg-orange-100 text-gray-800 relative"
+            style="background-image: url('{{ asset('images/'. $listing->images->first()->path) }}'); background-size: cover;">
             <div class="flex flex-row justify-between">
                 <svg class="fill-current stroke-current w-8 h-8 p-2 hover:bg-lime-200  rounded-full m-1" height="100"
                     preserveAspectRatio="xMidYMid meet" viewBox="0 0 100 100" width="100" x="0"
@@ -15,11 +16,9 @@
         </div>
         <div
             class="absolute bg-gray-50 -bottom-24 w-56 p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500">
-            <span class="text-gray-400 font-bold text-xs">{{ $listing->price }}</span>
+            <span class="text-gray-400 font-bold text-xs">Rs: {{ number_format($listing->price) }}</span>
             <span class="text-gray-800 font-bold text-xl mb-2">{{ $listing->title }}</span>
             <p class="text-neutral-800">{{ $listing->getDescriptionExcerpt() }}</p>
         </div>
-
-
     </div>
 </a>
