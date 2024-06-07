@@ -12,7 +12,7 @@
                     </p>
                 </div>
 
-                <form method="post"
+                <form method="post" enctype="multipart/form-data"
                     @if ($listing->id) action="{{ route('listings.update', $listing->id) }}"
                     @else
                     action="{{ route('listings.store') }}" @endif
@@ -52,6 +52,8 @@
 
 
                             </div>
+
+                            {{-- Location --}}
 
                             {{-- Title --}}
                             <div class="col-span-full">
@@ -111,6 +113,25 @@
                                 @enderror
                             </div>
 
+                            {{-- Images --}}
+                            <div class="col-span-full">
+                                <label for="images[]" class="block text-sm font-medium leading-6 text-gray-900">
+                                    Images
+                                </label>
+                                <div class="mt-2">
+                                    <input id="images[]" name="images[]" type="file" multiple accept="image/*"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                </div>
+                                <p class="mt-3 text-sm leading-6 text-gray-600">
+                                    Upload one or more images for the listing.
+                                </p>
+                                @error('images.*')
+                                    <p class="mt-3 text-sm leading-6 text-red-600">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
                             {{-- bedrooms --}}
                             <div class="col-span-full">
                                 <label for="bedrooms" class="block text-sm font-medium leading-6 text-gray-900">
@@ -130,7 +151,7 @@
                                     </p>
                                 @enderror
                             </div>
-                            
+
                             {{-- Bathrooms --}}
                             <div class="col-span-full">
                                 <label for="bathrooms" class="block text-sm font-medium leading-6 text-gray-900">
@@ -153,8 +174,7 @@
 
                             {{-- Floor Area --}}
                             <div class="col-span-full">
-                                <label for="floor_area"
-                                    class="block text-sm font-medium leading-6 text-gray-900">
+                                <label for="floor_area" class="block text-sm font-medium leading-6 text-gray-900">
                                     Floor Area
                                 </label>
                                 <div class="mt-2">
@@ -174,8 +194,7 @@
 
                             {{-- floors --}}
                             <div class="col-span-full">
-                                <label for="floors"
-                                    class="block text-sm font-medium leading-6 text-gray-900">
+                                <label for="floors" class="block text-sm font-medium leading-6 text-gray-900">
                                     Floors
                                 </label>
                                 <div class="mt-2">
@@ -195,8 +214,7 @@
 
                             {{-- Land area --}}
                             <div class="col-span-full">
-                                <label for="land_area"
-                                    class="block text-sm font-medium leading-6 text-gray-900">
+                                <label for="land_area" class="block text-sm font-medium leading-6 text-gray-900">
                                     Land Area
                                 </label>
                                 <div class="mt-2">
@@ -221,8 +239,7 @@
                                     Car Parking Spaces
                                 </label>
                                 <div class="mt-2">
-                                    <input id="car_parking_spaces" name="car_parking_spaces"
-                                        type="number"
+                                    <input id="car_parking_spaces" name="car_parking_spaces" type="number"
                                         value="{{ old('car_parking_spaces', $listing->car_parking_spaces) }}"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                 </div>
@@ -243,8 +260,7 @@
                                     Age of Building
                                 </label>
                                 <div class="mt-2">
-                                    <input id="age_of_building" name="age_of_building"
-                                        type="number"
+                                    <input id="age_of_building" name="age_of_building" type="number"
                                         value="{{ old('age_of_building', $listing->age_of_building) }}"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                 </div>
@@ -262,11 +278,10 @@
                             <div class="col-span-full">
                                 <label for="width_of_approach_road"
                                     class="block text-sm font-medium leading-6 text-gray-900">
-                                    Width of Approach Road 
+                                    Width of Approach Road
                                 </label>
                                 <div class="mt-2">
-                                    <input id="width_of_approach_road"
-                                        name="width_of_approach_road" type="number"
+                                    <input id="width_of_approach_road" name="width_of_approach_road" type="number"
                                         value="{{ old('width_of_approach_road', $listing->width_of_approach_road) }}"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                 </div>
@@ -287,7 +302,8 @@
                                     Developer
                                 </label>
                                 <div class="mt-2">
-                                    <input id="developer" name="developer" value="{{ old('developer', $listing->developer) }}"
+                                    <input id="developer" name="developer"
+                                        value="{{ old('developer', $listing->developer) }}"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                 </div>
                                 <p class="mt-3 text-sm leading-6 text-gray-600">
@@ -308,9 +324,15 @@
                                 <div class="mt-2">
                                     <select id="availability" name="availability"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                        <option value="Available" {{ old('availability', $listing->availability) == 'Available'? 'selected' : '' }}>Available</option>
-                                        <option value="Sold" {{ old('availability', $listing->availability) == 'Sold'? 'selected' : '' }}>Sold</option>
-                                        <option value="In Discussion" {{ old('availability', $listing->availability) == 'In Discussion'? 'selected' : '' }}>In Discussion</option>
+                                        <option value="Available"
+                                            {{ old('availability', $listing->availability) == 'Available' ? 'selected' : '' }}>
+                                            Available</option>
+                                        <option value="Sold"
+                                            {{ old('availability', $listing->availability) == 'Sold' ? 'selected' : '' }}>
+                                            Sold</option>
+                                        <option value="In Discussion"
+                                            {{ old('availability', $listing->availability) == 'In Discussion' ? 'selected' : '' }}>
+                                            In Discussion</option>
                                     </select>
                                     <p class="mt-3 text-sm leading-6 text-gray-600">
                                         Availability status of the listing.
@@ -325,14 +347,19 @@
 
                             {{-- Furnishing Status --}}
                             <div class="col-span-full">
-                                <label for="furnishing_status" class="block text-sm font-medium leading-6 text-gray-900">
+                                <label for="furnishing_status"
+                                    class="block text-sm font-medium leading-6 text-gray-900">
                                     Furnishing Status
                                 </label>
                                 <div class="mt-2">
                                     <select id="furnishing_status" name="furnishing_status"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                        <option value="1" {{ old('furnishing_status', $listing->furnishing_status) == '1'? 'selected' : '' }}>Furnished</option>
-                                        <option value="2" {{ old('furnishing_status', $listing->furnishing_status) == '2'? 'selected' : '' }}>Unfurnished</option>
+                                        <option value="1"
+                                            {{ old('furnishing_status', $listing->furnishing_status) == '1' ? 'selected' : '' }}>
+                                            Furnished</option>
+                                        <option value="2"
+                                            {{ old('furnishing_status', $listing->furnishing_status) == '2' ? 'selected' : '' }}>
+                                            Unfurnished</option>
                                     </select>
                                     <p class="mt-3 text-sm leading-6 text-gray-600">
                                         Furnishing status of the listing.

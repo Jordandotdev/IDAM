@@ -12,6 +12,7 @@ use App\Enums\PropertyType;
 use Illuminate\Support\Str;
 use App\Models\Bid;
 use App\Models\User;
+use App\Models\Image;
 
 class Listing extends Model
 {
@@ -57,6 +58,11 @@ class Listing extends Model
     public function contract()
     {
         return $this->belongsTo(Contract::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
     }
 
     public function getDescriptionExcerpt() // This is an accessor method that returns the excerpt of the post.

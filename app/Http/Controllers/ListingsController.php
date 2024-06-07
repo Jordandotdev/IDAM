@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\PropertyType;
 use Illuminate\Http\Request;
 use App\Models\Listing;
+use Illuminate\Support\Facades\Storage;
 
 class ListingsController extends Controller
 {
@@ -39,6 +40,7 @@ class ListingsController extends Controller
             'title' => 'required|max:255',
             'description' => 'required|string|min:10|max:65535',
             'price' => 'required|numeric|min:0',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'property_type' => 'required|in:'. implode(',', array_map(fn($case) => $case->value, PropertyType::cases())),
             'bedrooms' => 'required|integer|min:1',
             'bathrooms' => 'required|integer|min:1',
@@ -55,6 +57,7 @@ class ListingsController extends Controller
             'title.required' => 'The title field is required.',
             'description.required' => 'The description field is required.',
             'price.required' => 'The price field is required.',
+            'images.*.image' => 'The file must be an image.',
             'property_type.required' => 'The property type field is required.',
             'bedrooms.required' => 'The number of bedrooms field is required.',
             'bathrooms.required' => 'The number of bathrooms field is required.',
@@ -69,7 +72,17 @@ class ListingsController extends Controller
             'furnishing_status.required' => 'The furnishing status field is required.',
         ]);
 
-        Listing::create($validated);
+        $listing = Listing::create($validated);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = time().'_'.$image->getClientOriginalName();
+                $image->move(public_path('images'), $imageName);
+    
+                $listing->images()->create(['path' => $imageName]);
+            }
+        }
+
         return redirect()->route('listings.index')->with('success', 'Listing successfully created!');
     }
 
@@ -105,6 +118,7 @@ class ListingsController extends Controller
             'title' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|sometimes',
             'property_type' => 'required',
             'bedrooms' => 'required|integer|min:1',
             'bathrooms' => 'required|integer|min:1',
@@ -120,6 +134,15 @@ class ListingsController extends Controller
         ]);
 
         $listing->update($validated);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = time().'_'.$image->getClientOriginalName();
+                $image->move(public_path('images'), $imageName);
+    
+                $listing->images()->create(['path' => $imageName]);
+            }
+        }
 
         return redirect()->route('listings.index')->with('success', 'Listing successfully updated!');
     }
