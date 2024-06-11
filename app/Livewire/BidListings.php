@@ -1,12 +1,12 @@
 <?php
+
 namespace App\Livewire;
 
-use Illuminate\Database\Console\Migrations\RefreshCommand;
 use Livewire\Component;
 use App\Models\Bid;
 use App\Models\Listing;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
+use Carbon\Carbon;
 
 class BidListings extends Component
 {
@@ -16,21 +16,29 @@ class BidListings extends Component
     public $base_bid;
     public $lastCurrentBid;
     public $minBid;
+    public $timer;
+
+    public $startTime;
+
+    Public $endTime;
+
+    public $totalDurationInSeconds;
+
+    public $remainingTimeInSeconds;
+
+    public $timeLeftInHours;
 
     public function mount($price, $id)
     {
         $this->base_bid = $price;
-        $this->listing = Listing::find($id);
+        $this->listing = Listing::with('contract')->find($id);
         $this->bids = Bid::where('listing_id', $id)->with('user')->get();
 
         $latestBid = Bid::where('listing_id', $id)->orderBy('created_at', 'desc')->first();
-        if ($latestBid) {
-            $this->lastCurrentBid = $latestBid->current_bid;
-        } else {
-            $this->lastCurrentBid = null;
-        }
+        $this->lastCurrentBid = $latestBid ? $latestBid->current_bid : null;
 
         $this->updateMinBid();
+        $this->getTimeLeft();
     }
 
     public function render()
@@ -40,17 +48,11 @@ class BidListings extends Component
     }
 
     private function updateMinBid()
-{
-    if ($this->lastCurrentBid) {
-        $percentageIncrease = 0.001 * $this->lastCurrentBid;
-        $fixedAmount = 500;
-        $this->minBid = round(($percentageIncrease + $fixedAmount + $this->lastCurrentBid) / 100) * 100;
-    } else {
-        $percentageIncrease = 0.001 * $this->base_bid;
-        $fixedAmount = 1000;
-        $this->minBid = round(($percentageIncrease + $fixedAmount + $this->base_bid) / 100) * 100;
+    {
+        $percentageIncrease = $this->lastCurrentBid ? 0.001 * $this->lastCurrentBid : 0.001 * $this->base_bid;
+        $fixedAmount = $this->lastCurrentBid ? 500 : 1000;
+        $this->minBid = round(($percentageIncrease + $fixedAmount + ($this->lastCurrentBid ?? $this->base_bid)) / 100) * 100;
     }
-}
 
     public function placeBid()
     {
@@ -66,28 +68,41 @@ class BidListings extends Component
         if ($validatedData['currentBid'] <= $this->minBid) {
             session()->flash('message', 'Your bid must be higher than the base bid or match the minimum bid.');
             return;
-        } else {
-            $bid = new Bid();
-            $bid->user_id = Auth::id();
-            $bid->listing_id = $this->listing->id;
-            $bid->base_bid = $this->base_bid;
-            $bid->current_bid = $validatedData['currentBid'];
-
-            try {
-                \Log::info("Attempting to save bid");
-                $bid->save();
-                \Log::info("Bid saved successfully");
-                $this->reset('currentBid');
-                $this->bids->prepend($bid);
-                $this->lastCurrentBid = $bid->current_bid;
-                $this->updateMinBid();
-                return session()->flash('success', 'Your Bid has been placed!');
-                //refresh the page
-            } catch (\Exception $e) {
-                \Log::error("Error saving bid: " . $e->getMessage());
-                session()->flash('message', 'Bid not placed. Please try again.');
-                return;
-            }
         }
+
+        $bid = new Bid();
+        $bid->user_id = Auth::id();
+        $bid->listing_id = $this->listing->id;
+        $bid->base_bid = $this->base_bid;
+        $bid->current_bid = $validatedData['currentBid'];
+
+        try {
+            $bid->save();
+            $this->reset('currentBid');
+            $this->bids->prepend($bid);
+            $this->lastCurrentBid = $bid->current_bid;
+            $this->updateMinBid();
+            session()->flash('success', 'Your Bid has been placed!');
+        } catch (\Exception $e) {
+            session()->flash('message', 'Bid not placed. Please try again.');
+        }
+
+        $this->getTimeLeft();
     }
+
+    public function getTimeLeft()
+{
+
+    $this->startTime = strtotime($this->listing->contract->bid_date. ' '. $this->listing->contract->bid_time);
+    $this->endTime = $this->startTime + ($this->listing->contract->bid_duration * 3600);
+    $this->totalDurationInSeconds = $this->endTime - $this->startTime;
+    $this->remainingTimeInSeconds = max(0, $this->totalDurationInSeconds - (time() - $this->startTime));
+    $this->timeLeftInHours = floor($this->remainingTimeInSeconds / 3600);
+    $this->timer = [
+        'seconds' => $this->remainingTimeInSeconds,
+        'hours' => $this->timeLeftInHours
+    ];
+
+    $this->dispatch('updateCountdown', ['seconds' => $this->timer['seconds'], 'hours' => $this->timer['hours']]);
+}
 }

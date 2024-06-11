@@ -131,7 +131,6 @@
     document.addEventListener("DOMContentLoaded", function() {
         const steps = document.querySelectorAll('.step');
         steps.forEach((step, i) => {
-            // Initially hide all steps except the first one
             step.style.display = i === 0 ? 'block' : 'none';
         });
 
@@ -140,8 +139,6 @@
                 step.style.display = i + 1 === stepNumber ? 'block' : 'none';
             });
         }
-
-        // Debugging: Check if the function is being called
-        window.showStep = showStep; // Make showStep globally accessible for debugging
+        window.showStep = showStep; 
     });
 </script>

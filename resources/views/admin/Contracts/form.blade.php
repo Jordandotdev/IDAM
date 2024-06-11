@@ -22,6 +22,7 @@
                     <div class="px-4 py-6 sm:p-8">
                         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
+                            {{-- Listing ID --}}
                             <div class="col-span-full">
                                 <label for="listing_id" class="block text-sm font-medium leading-6 text-gray-900">
                                     Listing ID
@@ -36,11 +37,15 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <p class="mt-3 text-sm leading-6 text-gray-600">
+                                    ID of your Listing.
+                                </p>
                                 @error('listing_id')
                                     <p class="mt-3 text-sm leading-6 text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
 
+                            {{-- Agreement --}}
                             <div class="col-span-full">
                                 <label for="agreement" class="block text-sm font-medium leading-6 text-gray-900">
                                     Agreement
@@ -49,11 +54,15 @@
                                     <textarea id="agreement" name="agreement" rows="3"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ old('agreement', $contract->agreement ?? '') }}</textarea>
                                 </div>
+                                <p class="mt-3 text-sm leading-6 text-gray-600">
+                                    Rental/Selling Agreement.
+                                </p>
                                 @error('agreement')
                                     <p class="mt-3 text-sm leading-6 text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
 
+                            {{-- Contract Period --}}
                             <div class="col-span-full">
                                 <label for="contract_period" class="block text-sm font-medium leading-6 text-gray-900">
                                     Contract Period
@@ -63,13 +72,16 @@
                                         value="{{ old('contract_period', $contract->contract_period ?? '') }}"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                 </div>
+                                <p class="mt-3 text-sm leading-6 text-gray-600">
+                                    Period of Contract in months.
+                                </p>
                                 @error('contract_period')
                                     <p class="mt-3 text-sm leading-6 text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
 
 
-
+                            {{-- Bid Date --}}
                             <div class="col-span-full">
                                 <label for="bid_date" class="block text-sm font-medium leading-6 text-gray-900">
                                     Bid Date
@@ -79,11 +91,15 @@
                                         value="{{ old('bid_date', $contract->bid_date ?? '') }}"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                 </div>
+                                <p class="mt-3 text-sm leading-6 text-gray-600">
+                                    Start Date for Bidding.
+                                </p>
                                 @error('bid_date')
                                     <p class="mt-3 text-sm leading-6 text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
 
+                            {{-- Bid Time --}}
                             <div class="col-span-full">
                                 <label for="bid_time" class="block text-sm font-medium leading-6 text-gray-900">
                                     Bid Time
@@ -93,11 +109,15 @@
                                         value="{{ old('bid_time', $contract->bid_time ?? '') }}"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                 </div>
+                                <p class="mt-3 text-sm leading-6 text-gray-600">
+                                    Start Time for the date chosen for Bidding.
+                                </p>
                                 @error('bid_time')
                                     <p class="mt-3 text-sm leading-6 text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
 
+                            {{-- Bid Duration --}}
                             <div class="col-span-full">
                                 <label for="bid_duration" class="block text-sm font-medium leading-6 text-gray-900">
                                     Bid Duration
@@ -107,13 +127,15 @@
                                         value="{{ old('bid_duration', $contract->bid_duration ?? '') }}"
                                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                                 </div>
+                                <p class="mt-3 text-sm leading-6 text-gray-600">
+                                    Bidding Period in Hours.
+                                </p>
                                 @error('bid_duration')
                                     <p class="mt-3 text-sm leading-6 text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
 
                             
-
                         </div>
                     </div>
                     <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
