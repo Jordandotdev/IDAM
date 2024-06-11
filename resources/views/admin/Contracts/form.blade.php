@@ -4,10 +4,10 @@
             <div class="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
                 <div class="px-4 sm:px-0">
                     <h2 class="text-base font-semibold leading-7 text-gray-900">
-                        {{ $mode === 'create' ? 'Create Contract' : 'Update Contract' }}
+                        {{ $mode === 'create' ? 'Create Ticket' : 'Update Ticket' }}
                     </h2>
                     <p class="mt-1 text-sm leading-6 text-gray-600">
-                        {{ $mode === 'create' ? 'Create a new Contract.' : 'Update the Contract\'s details.' }}
+                        {{ $mode === 'create' ? 'Create a new Ticket.' : 'Update the Ticket\'s details.' }}
                     </p>
                 </div>
 

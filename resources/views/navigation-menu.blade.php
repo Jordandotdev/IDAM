@@ -28,13 +28,17 @@
                     </x-nav-link>
                     @endcan
                     
+                    @can('HighpropOwner_Gate')
                     <x-nav-link href="{{ route('listings.index') }}" :active="request()->routeIs('listings.index')">
                         {{ __('Listings') }}
-                    </x-nav-link>
+                    </x-nav-link>    
 
                     <x-nav-link href="{{ route('contracts.index') }}" :active="request()->routeIs('contracts.index')">
-                        {{ __('Contracts') }}
+                        {{ __('Tickets') }}
                     </x-nav-link>
+                    @endcan
+
+                    
                 </div>
             </div>
 

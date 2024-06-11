@@ -14,20 +14,16 @@ class ListingsController extends Controller
      */
     public function index()
     {
-        // $userID = auth()->user()->id;
-        // $userRole = auth()->user()->role;
+        $userRole = auth()->user()->role; 
 
-        // if ($userRole == 4) {
-        //     $listings = auth()->user()->listings()->paginate(10);
-        // } else {
-        //     $listings = Listing::paginate(10);
-        // }
+       
+        if ($userRole == 4) {
+            $listings = auth()->user()->listings()->paginate(10); 
+        } else {
+            $listings = Listing::paginate(10); 
+        }
 
-        // return view('admin.Listings.index', ['listings' => $listings]);
-
-        return view('admin.Listings.index', [
-            'listings' => Listing::paginate(10),
-        ]);
+        return view('admin.Listings.index', compact('listings', 'userRole'));
     }
 
     /**
@@ -64,7 +60,7 @@ class ListingsController extends Controller
             'width_of_approach_road' => 'required|numeric|min:1',
             'developer' => 'required|string|max:255',
             'availability' => 'required|in:Available,Sold,In Discussion',
-            'furnishing_status' => 'required|in:1,2', 
+            'furnishing_status' => 'required|in:1,2',
         ], [
             'status.required' => 'The status field is required.',
             'title.required' => 'The title field is required.',
@@ -84,6 +80,11 @@ class ListingsController extends Controller
             'availability.required' => 'The availability field is required.',
             'furnishing_status.required' => 'The furnishing status field is required.',
         ]);
+
+        $user_id = auth()->id();
+        if (!$user_id) {
+            return redirect()->back()->withErrors(['error' => 'User not authenticated.']);
+        }
 
         $listing = Listing::create(array_merge($validated, ['user_id' => auth()->id()]));
 
@@ -144,7 +145,7 @@ class ListingsController extends Controller
             'width_of_approach_road' => 'required|numeric|min:1',
             'developer' => 'required|string|max:255',
             'availability' => 'required|in:Available,Sold,In Discussion',
-            'furnishing_status' => 'required|in:1,2', // Assuming 1 for Furnished and 2 for Unfurnished
+            'furnishing_status' => 'required|in:1,2', 
         ]);
 
         $listing->update($validated);

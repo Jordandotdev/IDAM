@@ -25,13 +25,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        //Autorization Gates
+
         Gate::define('HighAuth_Gate', function ($user) {
             return $user->roles->pluck('id')->contains(1) || $user->roles->pluck('id')->contains(2);
         });
 
         Gate::define('MiddleAuth_Gate', function ($user) {
-            return $user->roles->pluck('id')->contains(3) || $user->roles->pluck('id')->contains(4);
+            return $user->roles->pluck('id')->contains(1) || $user->roles->pluck('id')->contains(2)
+             || $user->roles->pluck('id')->contains(3) || $user->roles->pluck('id')->contains(4);
         });
+
+        //Specific Gates including superAdmin and Admin
 
         Gate::define('Admin_Gate', function ($user) {
             return $user->roles->pluck('id')->contains(2);
@@ -41,6 +46,18 @@ class AuthServiceProvider extends ServiceProvider
             return $user->roles->pluck('id')->contains(1);
         });
 
+        Gate::define('HighpropOwner_Gate', function ($user) {
+            return $user->roles->pluck('id')->contains(4) ||
+             $user->roles->pluck('id')->contains(1) || $user->roles->pluck('id')->contains(2);
+        });
+
+        Gate::define('HighCustomer_Gate', function ($user) {
+            return $user->roles->pluck('id')->contains(3) ||
+             $user->roles->pluck('id')->contains(1) || $user->roles->pluck('id')->contains(2);
+        });
+
+        //Specific Gates 
+
         Gate::define('propOwner_Gate', function ($user) {
             return $user->roles->pluck('id')->contains(4);
         });
@@ -48,5 +65,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('Customer_Gate', function ($user) {
             return $user->roles->pluck('id')->contains(3);
         });
+        
     }
 }

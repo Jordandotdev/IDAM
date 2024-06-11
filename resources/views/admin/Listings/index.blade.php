@@ -20,7 +20,6 @@
                     </span>
                 </div>
             @endif
-
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
                     <h1 class="text-base font-semibold leading-6 text-gray-900">Listings</h1>

@@ -38,7 +38,8 @@ class Listing extends Model
         'car_parking_spaces',
         'furnishing_status',
         'age_of_building',
-        'width_of_approach_road'
+        'width_of_approach_road',
+        'user_id',
     ];
 
     protected $casts = [

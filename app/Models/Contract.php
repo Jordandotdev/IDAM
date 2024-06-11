@@ -17,6 +17,7 @@ class Contract extends Model
         'bid_date',
         'bid_time',
         'bid_duration',
+        'user_id',
     ];
 
     public function user()

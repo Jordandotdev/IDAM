@@ -13,9 +13,17 @@ class ContractsController extends Controller
      */
     public function index()
     {
-        return view('admin.Contracts.index', [
-            'contracts' => Contract::paginate(10),
-        ]);
+
+        $userRole = auth()->user()->role;
+
+        if ($userRole == 4) {
+            $contracts = auth()->user()->contracts()->paginate(10);
+        } else {
+            $contracts = Contract::paginate(10);
+        }
+
+
+        return view('admin.Contracts.index', compact('contracts', 'userRole'));
     }
 
     /**
@@ -23,12 +31,25 @@ class ContractsController extends Controller
      */
     public function create()
     {
-        $listings = Listing::all();
+        $userId = auth()->id();
+        $userRole = auth()->user()->role;
+
+        if ($userRole == 4) {
+            if (Listing::where('user_id', $userId)->exists()) {
+                $listings = Listing::where('user_id', $userId)->get();
+            } else {
+                return redirect()->route('contracts.index')->with('message', 'You need to create a listing first.'); 
+            }
+        } else {
+            $listings = Contract::paginate(10);
+        }
+
         return view('admin.Contracts.form', [
             'contract' => new Contract(),
             'mode' => 'create',
             'listings' => $listings,
         ]);
+
     }
 
     /**
@@ -45,7 +66,13 @@ class ContractsController extends Controller
             'bid_duration' => 'nullable|integer|min:24',
         ]);
 
-        Contract::create($validatedData);
+        $user_id = auth()->id();
+        if (!$user_id) {
+            return redirect()->back()->withErrors(['error' => 'User not authenticated.']);
+        }
+
+        $contract = Contract::create(array_merge($validatedData, ['user_id' => auth()->id()]));
+
 
         return redirect()->route('contracts.index')->with('success', 'Contract successfully created!');
     }
