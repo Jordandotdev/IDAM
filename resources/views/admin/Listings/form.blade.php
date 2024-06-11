@@ -26,6 +26,36 @@
                     <div class="px-4 py-6 sm:p-8">
                         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
+
+                            {{-- Availability --}}
+                            <div class="col-span-full">
+                                <label for="availability" class="block text-sm font-medium leading-6 text-gray-900">
+                                    Availability
+                                </label>
+                                <div class="mt-2">
+                                    <select id="availability" name="availability"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <option value="Available"
+                                            {{ old('availability', $listing->availability) == 'Available' ? 'selected' : '' }}>
+                                            Available</option>
+                                        <option value="Sold"
+                                            {{ old('availability', $listing->availability) == 'Sold' ? 'selected' : '' }}>
+                                            Sold</option>
+                                        <option value="In Discussion"
+                                            {{ old('availability', $listing->availability) == 'In Discussion' ? 'selected' : '' }}>
+                                            In Discussion</option>
+                                    </select>
+                                    <p class="mt-3 text-sm leading-6 text-gray-600">
+                                        Availability status of the listing.
+                                    </p>
+                                    @error('availability')
+                                        <p class="mt-3 text-sm leading-6 text-red-600">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+                            </div>
+
                             {{-- Location Type --}}
                             <div class="col-span-full">
                                 <label for="property_type" class="block text-sm font-medium leading-6 text-gray-900">
@@ -75,7 +105,7 @@
                                     <p class="mt-3 text-sm leading-6 text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
-
+                            
                             {{-- Location --}}
 
                             {{-- Title --}}
@@ -339,34 +369,7 @@
                                 @enderror
                             </div>
 
-                            {{-- Availability --}}
-                            <div class="col-span-full">
-                                <label for="availability" class="block text-sm font-medium leading-6 text-gray-900">
-                                    Availability
-                                </label>
-                                <div class="mt-2">
-                                    <select id="availability" name="availability"
-                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                        <option value="Available"
-                                            {{ old('availability', $listing->availability) == 'Available' ? 'selected' : '' }}>
-                                            Available</option>
-                                        <option value="Sold"
-                                            {{ old('availability', $listing->availability) == 'Sold' ? 'selected' : '' }}>
-                                            Sold</option>
-                                        <option value="In Discussion"
-                                            {{ old('availability', $listing->availability) == 'In Discussion' ? 'selected' : '' }}>
-                                            In Discussion</option>
-                                    </select>
-                                    <p class="mt-3 text-sm leading-6 text-gray-600">
-                                        Availability status of the listing.
-                                    </p>
-                                    @error('availability')
-                                        <p class="mt-3 text-sm leading-6 text-red-600">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
-                                </div>
-                            </div>
+                            
 
                             {{-- Furnishing Status --}}
                             <div class="col-span-full">
@@ -394,7 +397,7 @@
                                     @enderror
                                 </div>
                             </div>
-
+                        </div>
                             <div
                                 class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
                                 <button type="button"

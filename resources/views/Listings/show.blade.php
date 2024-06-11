@@ -31,8 +31,30 @@
                 <h1 class="text-3xl font-bold">{{ $listing->title }}</h1>
             </div>
             <div class="flex gap-2 mt-2">
-                <p class="text-white p-2 bg-green-600 rounded">Availability: {{ $listing->availability }}</p>
-                <p class="text-white p-2 bg-green-800 rounded">Status: for {{ $listing->status }}</p>
+                <div>
+                    @switch($listing->availability)
+                        @case('Sold')
+                            <span>
+                                <p class="text-white p-2.5 bg-red-600 rounded">Availability: Sold</p>
+                            </span>
+                        @break
+
+                        @case('Available')
+                            <span>
+                                <p class="text-white p-2.5 bg-green-600 rounded">Availability: Available</p>
+                            </span>
+                        @break
+
+                        @case('In Discussion')
+                            <span>
+                                <p class="text-white p-2.5 bg-slate-600 rounded">Availability: In Discussion</p>
+                            </span>
+                        @break
+
+                        @default
+                            <span class="bg-gray-600">Unknown</span>
+                    @endswitch
+                </div>
                 <p class="text-white p-2 bg-slate-500 rounded">Price Rs: {{ number_format($listing->price) }}</p>
                 <p class="text-white p-2 bg-slate-500 rounded">Type: {{ $listing->property_type->name }}</p>
                 <p class="text-white p-2 bg-slate-500 rounded">Developer: {{ $listing->developer }}</p>
@@ -64,7 +86,8 @@
             @if ($listing->contract)
                 @livewire('bid-listings', ['id' => $listing->id, 'price' => $listing->price])
             @else
-                
+                <h2 class="mb-2 text-2xl font-bold">Contact Details</h2>
+                @livewire('contact-share', ['id' => $listing->user_id])
             @endif
         </div>
     </article>
