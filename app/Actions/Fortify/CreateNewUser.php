@@ -34,13 +34,25 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature()? ['accepted', 'required'] : '',
+            'nic_number' => ['nullable', 'string', 'max:255'],
+            'phone_number' => ['nullable', 'string', 'max:255'],
+            'address' => ['nullable', 'string', 'max:255'],
+            'city' => ['nullable', 'string', 'max:255'],
+            'country' => ['nullable', 'string', 'max:255'],
+            'zip_code' => ['nullable', 'string', 'max:255'],
         ])->validate();
-    
+
         $user = User::create([
             'role' => $roleId,
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'nic_number' => $input['nic_number'],
+            'phone_number' => $input['phone_number'],
+            'address' => $input['address'],
+            'city' => $input['city'],
+            'country' => $input['country'],
+            'zip_code' => $input['zip_code'],
         ]);
     
         $role = Role::where('name', $input['role'])->firstOrFail();

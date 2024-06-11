@@ -15,7 +15,6 @@ class ListingsController extends Controller
     public function index()
     {
         $userRole = auth()->user()->role; 
-
        
         if ($userRole == 4) {
             $listings = auth()->user()->listings()->paginate(10); 
@@ -23,7 +22,7 @@ class ListingsController extends Controller
             $listings = Listing::paginate(10); 
         }
 
-        return view('admin.Listings.index', compact('listings', 'userRole'));
+        return view('admin.Listings.index', compact('listings'));
     }
 
     /**

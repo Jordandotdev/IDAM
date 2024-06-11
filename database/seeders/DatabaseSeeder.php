@@ -30,12 +30,14 @@ class DatabaseSeeder extends Seeder
 
        $SuperAdmin =  \App\Models\User::factory()->create([
             'name' => 'SuperAdmin',
+            'role' => 1,
             'email' => 'superadmin@idam.com',
             'password' => bcrypt('SuperAdmin'),
         ],);
 
         $Admin = \App\Models\User::factory()->create([
             'name' => 'Admin',
+            'role' => 2,
             'email' => 'admin@idam.com',
             'password' => bcrypt('Admin'),
         ]);

@@ -18,11 +18,21 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            $table->string('nic_number')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
+            $table->string('zip_code')->nullable();
+
+
             $table->rememberToken();
             $table->timestamps();
             $table->string('profile_photo_path')->nullable();
             $table->integer('current_team_id')->nullable();
         });
+
     }
 
     /**

@@ -31,10 +31,10 @@
                 <h1 class="text-3xl font-bold">{{ $listing->title }}</h1>
             </div>
             <div class="flex gap-2 mt-2">
-                <p class="text-white p-2 bg-green-500 rounded">Status: for {{ $listing->status }}</p>
+                <p class="text-white p-2 bg-green-600 rounded">Availability: {{ $listing->availability }}</p>
+                <p class="text-white p-2 bg-green-800 rounded">Status: for {{ $listing->status }}</p>
                 <p class="text-white p-2 bg-slate-500 rounded">Price Rs: {{ number_format($listing->price) }}</p>
                 <p class="text-white p-2 bg-slate-500 rounded">Type: {{ $listing->property_type->name }}</p>
-                <p class="text-white p-2 bg-slate-500 rounded">Availability: {{ $listing->availability }}</p>
                 <p class="text-white p-2 bg-slate-500 rounded">Developer: {{ $listing->developer }}</p>
             </div>
             <div class="flex flex-wrap gap-2 mt-2 w-[800px]">
