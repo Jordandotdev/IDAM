@@ -56,6 +56,7 @@
                     @endswitch
                 </div>
                 <p class="text-white p-2 bg-slate-500 rounded">Price Rs: {{ number_format($listing->price) }}</p>
+                <p class="text-white p-2 bg-slate-500 rounded">Address: {{ $listing->address }}</p>
                 <p class="text-white p-2 bg-slate-500 rounded">Type: {{ $listing->property_type->name }}</p>
                 <p class="text-white p-2 bg-slate-500 rounded">Developer: {{ $listing->developer }}</p>
             </div>

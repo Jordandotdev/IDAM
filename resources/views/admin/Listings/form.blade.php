@@ -106,7 +106,25 @@
                                 @enderror
                             </div>
 
-                            {{-- Location --}}
+                            {{-- Address --}}
+                            <div class="col-span-full">
+                                <label for="address" class="block text-sm font-medium leading-6 text-gray-900">
+                                    Address
+                                </label>
+                                <div class="mt-2">
+                                    <input id="address" name="address"
+                                        value="{{ old('address', $listing->address ?? '') }}"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                                </div>
+                                <p class="mt-3 text-sm leading-6 text-gray-600">
+                                    Address of the listing.
+                                </p>
+                                @error('address')
+                                    <p class="mt-3 text-sm leading-6 text-red-600">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
 
                             {{-- Title --}}
                             <div class="col-span-full">
@@ -397,7 +415,7 @@
                             </div>
 
                         </div>
-                    
+
                         <div
                             class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
                             <button type="button"
@@ -411,3 +429,5 @@
     </div>
 
 </x-app-layout>
+
+

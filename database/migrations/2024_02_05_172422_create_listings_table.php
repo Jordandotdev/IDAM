@@ -31,6 +31,7 @@ return new class extends Migration {
             $table->integer('width_of_approach_road')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->text('address')->nullable();
             $table->timestamps();
         });
 

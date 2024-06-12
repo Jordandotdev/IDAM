@@ -18,6 +18,7 @@
         <div class="bg-gray-100 overflow-hidden shadow-xl sm:rounded-lg">
             <div class="flex p-8 gap-2">
                @livewire('dashboard-progress-chart')
+               {{-- @livewire('country-info-component', ['iso2Code' => 'US']) --}}
             </div>
         </div>
     </div>

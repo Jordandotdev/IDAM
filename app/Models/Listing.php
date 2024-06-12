@@ -40,6 +40,7 @@ class Listing extends Model
         'age_of_building',
         'width_of_approach_road',
         'user_id',
+        'address',
     ];
 
     protected $casts = [

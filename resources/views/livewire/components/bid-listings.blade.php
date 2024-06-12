@@ -33,6 +33,7 @@
     @endif
 
     <h2 class="text-2xl font-semibold text-gray-900 mb-5">Bidding</h2>
+    @if ($timer['seconds'] > 0 && $timer['hours'] > 0)
     @auth
         <div>
             <input type="number" step="0.01" min="0" wire:model="currentBid"
@@ -65,11 +66,18 @@
             </div>
         @endforelse
     </div>
-
-    <div id="listingStatus" class="mt-5 p-4 bg-blue-100 border border-blue-400 text-blue-700 rounded-lg">
-        <h2 class="text-lg font-semibold">Time Remaining</h2>
-        <div id="countdown" class="text-lg mt-2">{{$timer['hours']}} {{ gmdate('i:s', $timer['seconds']) }} Remaining</div>
+    @else
+    <div id="listingStatus" class="mt-5 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+        <h2 class="text-lg font-semibold">Bidding Ended</h2>
     </div>
+    @endif
+
+    @if ($timer['seconds'] > 0 && $timer['hours'] > 0)
+        <div id="listingStatus" class="mt-5 p-4 bg-blue-100 border border-blue-400 text-blue-700 rounded-lg">
+            <h2 class="text-lg font-semibold">Time Remaining</h2>
+            <div id="countdown" class="text-lg mt-2">{{$timer['hours']}} {{ gmdate('i:s', $timer['seconds']) }} Remaining</div>
+        </div>
+    @endif
 
 </div>
 

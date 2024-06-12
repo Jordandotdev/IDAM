@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Console\Commands\EndBiddingPeriod;
 use Livewire\Component;
 use App\Models\Bid;
+use App\Models\Agreement;
 use App\Models\Listing;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -17,16 +19,12 @@ class BidListings extends Component
     public $lastCurrentBid;
     public $minBid;
     public $timer;
-
     public $startTime;
-
-    Public $endTime;
-
+    public $endTime;
     public $totalDurationInSeconds;
-
     public $remainingTimeInSeconds;
-
     public $timeLeftInHours;
+    public $agreement;
 
     public function mount($price, $id)
     {
@@ -91,18 +89,28 @@ class BidListings extends Component
     }
 
     public function getTimeLeft()
-{
+    {
+        $this->startTime = strtotime($this->listing->contract->bid_date . ' ' . $this->listing->contract->bid_time);
+        $this->endTime = $this->startTime + ($this->listing->contract->bid_duration * 3600);
+        $this->totalDurationInSeconds = $this->endTime - $this->startTime;
+        $this->remainingTimeInSeconds = max(0, $this->totalDurationInSeconds - (time() - $this->startTime ) - 19800);
+        $this->timeLeftInHours = floor($this->remainingTimeInSeconds / 3600);
+        $this->timer = [
+            'seconds' => $this->remainingTimeInSeconds,
+            'hours' => $this->timeLeftInHours
+        ];
+        
+        if ($this->remainingTimeInSeconds <= 0 && $this->timeLeftInHours <= 0) {
+            $this->listing->update(['availability' => 'sold']);
+            $this->listing->update(['current_bid' => $this->lastCurrentBid]);
+            $this->dispatch('bidding-ended', ['listingId' => $this->listing->id]);
+        }
 
-    $this->startTime = strtotime($this->listing->contract->bid_date. ' '. $this->listing->contract->bid_time);
-    $this->endTime = $this->startTime + ($this->listing->contract->bid_duration * 3600);
-    $this->totalDurationInSeconds = $this->endTime - $this->startTime;
-    $this->remainingTimeInSeconds = max(0, $this->totalDurationInSeconds - (time() - $this->startTime));
-    $this->timeLeftInHours = floor($this->remainingTimeInSeconds / 3600);
-    $this->timer = [
-        'seconds' => $this->remainingTimeInSeconds,
-        'hours' => $this->timeLeftInHours
-    ];
+        $this->dispatch('updateCountdown', ['seconds' => $this->timer['seconds'], 'hours' => $this->timer['hours']]);
+    }
 
-    $this->dispatch('updateCountdown', ['seconds' => $this->timer['seconds'], 'hours' => $this->timer['hours']]);
-}
+    public function createContract()
+    {
+        
+    }
 }

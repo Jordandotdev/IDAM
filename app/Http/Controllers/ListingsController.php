@@ -60,6 +60,7 @@ class ListingsController extends Controller
             'developer' => 'required|string|max:255',
             'availability' => 'required|in:Available,Sold,In Discussion',
             'furnishing_status' => 'required|in:1,2',
+            'address' => 'required|string|max:255',
         ], [
             'status.required' => 'The status field is required.',
             'title.required' => 'The title field is required.',
@@ -78,6 +79,7 @@ class ListingsController extends Controller
             'developer.required' => 'The developer field is required.',
             'availability.required' => 'The availability field is required.',
             'furnishing_status.required' => 'The furnishing status field is required.',
+            'address.required' => 'The address field is required.',
         ]);
 
         $user_id = auth()->id();
@@ -145,6 +147,7 @@ class ListingsController extends Controller
             'developer' => 'required|string|max:255',
             'availability' => 'required|in:Available,Sold,In Discussion',
             'furnishing_status' => 'required|in:1,2', 
+            'address' => 'required|string|max:255',
         ]);
 
         $listing->update($validated);

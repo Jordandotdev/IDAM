@@ -13,7 +13,7 @@ class EndBiddingPeriod extends Command
      *
      * @var string
      */
-    protected $signature = 'bidding:end-period';
+    protected $signature = 'bidding:end-period {listingId}';
 
     /**
      * The console command description.
@@ -23,20 +23,27 @@ class EndBiddingPeriod extends Command
     protected $description = 'Ends the bidding period for listings that have reached their end time';
 
     /**
-     * Execute the console command.
+     * Create a new command instance.
+     *
+     * @return void
      */
-    
-    public function handle()
+    public function __construct()
     {
-        $listings = Listing::where('status', 'open')->where('bid_date', '<', now())->get();
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle(int $listingId)
+    {
+        $listings = Listing::where('id', $listingId)->where('availability', 'Available')->where('bid_date', '<', now())->get();
 
         foreach ($listings as $listing) {
-            // Assuming 'bid_date' is a datetime column in your listings table
             $highestBid = $listing->bids()->max('current_bid');
             $listing->update(['status' => 'In Discussion', 'highest_bid' => $highestBid]);
-
-            // Optionally, notify users or perform additional cleanup
-            // For example, you could dispatch an event or send a notification here
         }
 
         $this->info('Bidding period ended for listings.');
